@@ -1,0 +1,98 @@
+site_id,site_desc,ampm,odotcity,ward,legacy,osu_city,loctype,mv_at,longitude,latitude,hours,moto,bus,workveh,car,truck,totMV,bike,ebike,totbike,ped,escoot,othermicro,tot_roll,totAT,tot_trips
+101,SW Reservoir and NW 53rd and Campus Way MUP,pm,city,1,legacy,city,intersection,MV_AT,-123.312054,44.565273,2,15,22,109,1966,391,2503,91,26,117,24,0,1,1,142,2645
+102,NW 53rd and SW Cherry,pm,city,1,new,city,intersection,MV_AT,-123.311991,44.560712,2,4,12,42,1457,159,1674,35,3,38,11,0,0,0,49,1723
+104,West Hills,pm,city,1,new,city,street,MV_AT,-123.31362,44.556285,2,0,10,26,758,58,852,7,0,7,9,0,0,0,16,868
+105,West Hills and SW Sylvia,pm,city,1,new,city,intersection,MV_AT,-123.304203,44.556304,2,2,4,15,425,70,516,5,3,8,18,4,0,4,30,546
+106,SW Philomath and SW 53rd,pm,odot,1,new,city,intersection,AT,-123.312003,44.550873,2,7,25,256,3778,96,4162,8,3,11,18,3,0,3,32,4194
+109,SW Country Club and SW 49th,pm,city,1,new,city,intersection,MV_AT,-123.306716,44.545743,2,1,8,17,452,71,549,42,12,54,49,2,1,3,106,655
+110,SW Philomath and SW 35th,pm,odot,1,new,city,intersection,AT,-123.289572,44.554552,2,NA,NA,NA,NA,NA,3500,64,22,86,24,3,2,5,115,3615
+111,SW Western and SW 35th,am,city,1,legacy,city,intersection,MV_AT,-123.289618,44.556911,2,7,44,150,1381,89,1671,23,12,35,58,8,1,9,102,1773
+112,SW 35th and Corv-Philo MUP,pm,city,1,new,city,intersection,MV_AT,-123.289623,44.549547,2,1,10,22,659,76,768,16,4,20,27,0,0,0,47,815
+113,SW Technology and SW Research,pm,city,1,new,city,intersection,MV_AT,-123.306261,44.551237,2,3,11,27,1295,180,1516,8,1,9,20,0,0,0,29,1545
+114,SW Country Club and SW Research,pm,city,1,new,city,intersection,MV_AT,-123.294722,44.548339,2,2,7,16,635,127,787,26,2,28,27,0,1,1,56,843
+201,NW Kings and NW Jackson,am,city,2,new,osu,intersection,MV_AT,-123.275072,44.569084,2,5,11,24,193,24,257,97,8,105,187,10,3,13,305,562
+202,NW Harrison and NW Kings,pm,city,2,legacy,city,intersection,MV_AT,-123.275127,44.57132,2,20,10,95,2710,301,3136,122,8,130,177,21,6,27,334,3470
+203,NW Van Buren and NW 13th,am,city,2,new,osu,intersection,MV_AT,-123.270267,44.568956,2,1,9,28,715,106,859,14,0,14,38,1,1,2,54,913
+204,NW 11th and NW Jackson,pm,city,2,new,osu,intersection,MV_AT,-123.268889,44.567478,2,1,0,5,199,15,220,78,3,81,73,6,5,11,165,385
+205,NW Monroe and NW 5th,pm,city,2,legacy,city,intersection,MV_AT,-123.263006,44.564917,2,7,20,26,1210,153,1416,NA,NA,105,154,7,8,15,274,1690
+206,SW Jefferson and SW 6th,pm,city,2,new,city,intersection,MV_AT,-123.265124,44.563181,2,2,26,21,625,62,736,57,3,60,121,3,2,5,186,922
+207,SW 11th and SW Washington,pm,city,2,new,osu,intersection,MV_AT,-123.271303,44.562587,2,1,0,21,914,80,1016,56,8,64,426,30,4,34,524,1540
+208,SW Adams and SW 8th,pm,city,2,new,osu,intersection,MV_AT,-123.267734,44.562761,2,0,1,10,82,7,100,17,2,19,54,2,3,5,78,178
+209,NW Tyler and NW 9th,pm,city,2,new,city,intersection,MV_AT,-123.26529,44.569889,2,22,20,56,2435,262,2795,24,4,28,38,2,1,3,69,2864
+212,NW 14th and NW Monroe,am,city,2,legacy,city,intersection,MV_AT,-123.272177,44.567191,2,7,50,69,860,104,1090,182,9,191,218,20,8,28,437,1527
+213,SW B and SW Western and Riverfront MUP,pm,city,2,new,city,intersection,MV_AT,-123.261295,44.558893,1,0,0,0,3,0,3,NA,NA,14,13,NA,2,2,29,32
+301,SE Rivergreen and SE Summerfield,pm,city,3,new,city,intersection,MV_AT,-123.260756,44.531082,2,2,9,11,475,44,541,13,5,18,30,2,1,3,51,592
+302,SE Park Ave. and SE Thompson and SE Park Place,pm,city,3,new,city,intersection,MV_AT,-123.260413,44.538698,2,0,6,7,114,15,142,9,4,13,19,1,0,1,33,175
+303,SW Wake Robin,am,city,3,new,city,street,MV_AT,-123.266917,44.538043,2,0,10,18,126,22,176,NA,NA,3,10,0,0,0,13,189
+304,SW Tunison,am,city,3,new,city,street,MV_AT,-123.266228,44.543443,2,2,7,9,176,27,221,5,3,8,23,0,1,1,32,253
+305,SE Viewmont and SE Thompson,am,city,3,new,city,intersection,MV_AT,-123.260444,44.543635,2,1,3,7,117,10,138,NA,NA,25,54,0,0,0,79,217
+306,SE Alexander and SE Stone,am,city,3,new,city,intersection,MV_AT,-123.260747,44.545236,2,0,8,3,212,24,247,NA,NA,14,40,0,0,0,54,301
+307,SE Bethel and SE Bridgeway,pm,city,3,new,city,intersection,MV_AT,-123.258709,44.550264,2,0,4,4,86,14,108,32,7,39,26,0,0,0,65,173
+308,SE Crystal Lake and Eric Austin MUP and EA Path,pm,city,3,new,city,intersection,MV_AT,-123.262017,44.552277,2,2,14,18,504,50,588,50,3,53,14,3,1,4,71,659
+309,SE Crystal Lake and SE Alexander,pm,city,3,new,city,intersection,MV_AT,-123.255598,44.545261,2,0,0,13,150,23,186,NA,NA,43,28,2,0,2,73,259
+310,OR99W near SE Goodnight,pm,odot,3,new,city,street,AT,-123.266803,44.536387,2,NA,NA,NA,NA,NA,4258,NA,NA,13,12,0,0,0,25,4283
+311,OR99W and SE Alexander,am,odot,3,legacy,city,intersection,AT,-123.265852,44.545193,2,NA,NA,NA,NA,NA,3184,24,9,33,20,2,0,2,55,3239
+312,OR99W and SE Crystal Lake,am,odot,3,legacy,city,intersection,AT,-123.265149,44.551939,2,NA,NA,NA,NA,NA,3178,68,6,74,27,6,1,7,108,3286
+312,OR99W and SE Crystal Lake,pm,odot,3,legacy,city,intersection,AT,-123.265149,44.551939,2,NA,NA,NA,NA,NA,3841,NA,NA,101,33,6,0,6,140,3981
+313,SE Lilly,pm,city,3,new,city,street,MV_AT,-123.265037,44.547964,2,0,0,14,126,9,149,5,2,7,10,0,0,0,17,166
+314,SE Bridgeway,pm,city,3,new,city,street,MV_AT,-123.264871,44.54981,2,2,0,2,53,4,61,NA,NA,6,4,0,0,0,10,71
+315,SE Goodnight and SE River Park and  SE Deborah,am,city,3,new,city,intersection,MV_AT,-123.262264,44.536721,2,1,12,16,127,13,169,NA,NA,10,39,0,0,0,49,218
+401,SW Western and SW 15th,am,city,4,new,osu,intersection,MV_AT,-123.273983,44.559854,2,7,43,136,1587,139,1912,90,7,97,183,21,2,23,303,2215
+402,SW 11th and SW C,pm,city,4,new,city,intersection,MV_AT,-123.27086,44.559171,2,1,1,3,106,9,120,21,2,23,47,6,0,6,76,196
+404,NW 30th and SW Jackson,am,city,4,new,osu,intersection,MV_AT,-123.284631,44.569749,2,8,12,30,842,82,974,78,3,81,130,2,3,5,216,1190
+405,SW 35th and SW Campus,am,city,4,new,osu,intersection,MV_AT,-123.2897,44.566809,2,1,5,8,377,56,447,92,6,98,134,11,1,12,244,691
+406,SW 35th and SW Washington,am,city,4,new,osu,intersection,MV_AT,-123.289694,44.562051,2,0,0,13,3,0,16,NA,NA,75,124,3,16,19,218,234
+407,SW 35th and NW Harrison,pm,city,4,new,osu,intersection,MV_AT,-123.289714,44.571714,2,13,17,55,1659,191,1935,NA,NA,88,59,6,7,13,160,2095
+407,SW 35th and NW Harrison,am,city,4,new,osu,intersection,MV_AT,-123.289714,44.571714,2,7,21,72,1122,146,1368,52,7,59,67,15,0,15,141,1509
+501,NW 26th and NW Van Buren,am,city,5,new,osu,intersection,MV_AT,-123.280089,44.570414,2,0,0,13,73,4,90,61,1,52,265,5,5,10,327,417
+502,NW Beca and NW 17th,am,city,5,new,city,intersection,MV_AT,-123.270795,44.578154,2,0,2,0,97,0,99,33,2,35,36,3,0,3,74,173
+503,NW 27th and NW Tyler,pm,city,5,new,osu,intersection,MV_AT,-123.281163,44.572724,2,0,0,9,189,25,223,32,6,38,99,7,2,9,146,369
+504,NW Grant and NW 29th,pm,city,5,legacy,city,intersection,MV_AT,-123.283083,44.578664,4,22,12,71,3669,410,4184,200,41,241,197,13,4,17,455,4639
+506,NW 11th and NW Polk,am,city,5,new,city,intersection,MV_AT,-123.266976,44.571326,2,0,2,1,186,21,210,37,6,43,37,1,1,2,82,292
+506,NW 11th and NW Polk,pm,city,5,new,city,intersection,MV_AT,-123.266976,44.571326,2,1,1,2,154,18,176,59,14,83,45,2,3,5,133,309
+507,NW 16th and NW Taylor,am,city,5,new,city,intersection,MV_AT,-123.271253,44.573373,2,0,2,4,233,33,272,38,2,40,37,1,2,3,80,352
+508,NW Buchanan and NW 10th,am,city,5,new,city,intersection,MV_AT,-123.263458,44.575801,2,1,12,27,743,69,852,54,6,60,48,5,1,6,114,966
+509,NW Buchanan and NW 19th,am,city,5,new,city,intersection,MV_AT,-123.273154,44.576068,2,0,8,20,582,53,663,66,10,76,80,9,0,9,165,828
+510,NW 11th and NW Grant,am,city,5,new,city,intersection,MV_AT,-123.263555,44.579622,2,4,4,22,436,57,523,34,8,42,37,0,1,1,80,603
+601,NW 5th and NW Polk,am,city,6,new,city,intersection,MV_AT,-123.260471,44.569807,2,2,10,32,435,62,541,NA,NA,38,40,0,2,2,80,621
+602,NE Circle,pm,city,6,new,city,street,MV_AT,-123.247057,44.588923,2,2,11,38,1648,284,1983,24,1,25,12,0,0,0,37,2020
+602.1,Jack London,pm,city,7,new,city,street,MV_AT,-123.247057,44.588923,2,0,0,0,78,15,93,7,0,7,3,0,0,0,10,103
+603,"NE Walnut, east of OR99W",pm,city,6,new,city,street,MV_AT,-123.250365,44.593342,2,1,5,28,941,193,1168,5,4,9,5,0,0,0,14,1182
+604,"NW 9th, south of NW Spruce",pm,city,6,new,city,intersection,AT,-123.256508,44.585863,2,NA,NA,NA,NA,NA,3247,26,3,29,44,2,0,2,75,3322
+605,NW Circle and NW Highland,pm,city,6,new,city,intersection,MV_AT,-123.262535,44.588727,2,6,28,55,2812,386,3287,60,21,81,49,3,0,3,133,3420
+606,NW Garfield and NW 10th,am,city,6,new,city,intersection,MV_AT,-123.262538,44.583139,2,3,31,23,809,NA,866,NA,NA,43,47,0,4,4,94,960
+607,NW Garfield and NW Kings,am,city,6,new,city,intersection,MV_AT,-123.276019,44.582978,2,1,16,40,987,162,1206,42,8,50,32,3,1,4,86,1292
+608,NW 17th and NW Cleveland,pm,city,6,new,city,intersection,MV_AT,-123.271405,44.586285,2,0,0,4,75,13,92,16,1,17,22,2,2,4,43,135
+609,NW Elmwood and NW 27th,am,city,6,new,city,intersection,MV_AT,-123.281208,44.587749,2,0,8,1,89,6,104,NA,NA,33,41,0,0,0,74,178
+610,NW Walnut and NW Highland,pm,city,6,legacy,city,intersection,MV_AT,-123.262574,44.593782,2,14,20,95,3153,493,3775,NA,NA,57,30,3,0,3,80,3865
+611,NW Garryanna and NW Forestgreen,pm,city,6,new,city,intersection,MV_AT,-123.269368,44.590024,2,1,3,4,139,8,155,10,1,11,30,0,0,0,41,196
+612,NW Circle and NW Kings,pm,city,6,new,city,intersection,MV_AT,-123.276012,44.586353,2,15,19,42,3099,373,3548,40,9,49,29,3,0,3,81,3629
+613,NW 13th and NW Oak,am,city,6,new,city,intersection,MV_AT,-123.267136,44.592909,2,0,2,3,34,6,45,6,0,6,8,0,0,0,14,59
+614,SE Circle and OR99 MUP,pm,odot,6,legacy,city,intersection,AT,-123.253197,44.588822,2,NA,NA,NA,NA,NA,2898,43,10,53,29,0,0,0,29,2980
+615,SW 10th and SW Cleveland,am,city,6,new,city,intersection,MV_AT,-123.262458,44.585886,2,2,30,29,509,55,625,38,14,52,66,0,1,1,119,744
+701,NW 36th and NW Polk,pm,city,7,new,city,intersection,MV_AT,-123.290868,44.573662,2,8,2,19,598,65,692,NA,NA,26,27,1,1,2,55,747
+702,NW Harrison and NW Walnut,pm,city,7,new,city,intersection,MV_AT,-123.312114,44.571067,4,28,49,259,5153,820,6309,NA,NA,75,32,1,0,1,108,6417
+703,NW Circle and NW Witham Hill,pm,city,7,legacy,city,intersection,MV_AT,-123.295219,44.581392,4,7,34,60,2714,296,3111,NA,NA,40,111,6,0,6,157,3268
+704,NW Fillmore and NW 34th,am,city,7,new,city,intersection,MV_AT,-123.288895,44.575549,2,0,2,0,30,5,37,12,2,14,30,0,0,0,44,81
+704,NW Fillmore and NW 34th,pm,city,7,new,city,intersection,MV_AT,-123.288895,44.575549,4,NA,2,6,94,6,109,NA,NA,15,40,NA,NA,2,57,166
+705,NW Lincoln and NW 31st,am,city,7,new,city,intersection,MV_AT,-123.285857,44.577112,2,0,0,1,76,10,87,NA,NA,28,23,0,0,0,51,138
+706,NW 27th and NW Hayes,pm,city,7,new,city,intersection,MV_AT,-123.281099,44.58162,2,1,1,2,69,6,79,43,9,52,43,2,0,2,97,176
+706,NW 27th and NW Hayes,am,city,7,new,city,intersection,MV_AT,-123.281099,44.58162,2,0,1,2,67,4,74,NA,NA,57,62,0,0,0,119,193
+707,NW Circle and NW 29th,am,city,7,new,city,intersection,MV_AT,-123.283106,44.586396,2,4,10,76,1169,141,1400,NA,NA,66,36,2,0,2,104,1504
+707,NW Circle and NW 29th,pm,city,7,new,city,intersection,MV_AT,-123.283106,44.586396,2,6,8,65,728,216,1023,50,17,67,40,4,0,4,111,1134
+801,NW Walnut and NW Glenridge,pm,city,8,new,city,intersection,MV_AT,-123.302258,44.593906,2,10,20,106,1898,296,2330,21,7,28,22,1,0,1,51,2381
+802,NW Aspen and NW Tamarack,pm,city,8,new,city,intersection,MV_AT,-123.293969,44.594026,2,1,2,4,216,13,236,7,3,10,29,0,0,0,39,275
+803,NW 29th and NW Arrowood,am,city,8,new,city,intersection,MV_AT,-123.287831,44.596609,2,0,5,30,518,51,604,14,1,15,40,1,0,1,56,660
+804,"NW Walnut, west of NW 29th",pm,city,8,new,city,street,AT,-123.288348,44.593306,2,NA,NA,NA,NA,NA,1671,NA,NA,25,11,1,0,1,37,1708
+805,NW Walnut and NW Fair Oaks,pm,city,8,new,city,intersection,MV_AT,-123.30764,44.587289,2,10,8,26,1278,187,1509,20,3,23,19,0,0,0,42,1551
+806,NW Walnut and NW Kings,pm,city,8,new,city,intersection,MV_AT,-123.276281,44.592297,2,4,26,64,3223,458,3775,NA,NA,11,26,2,0,2,39,3814
+807,NW Princess and NW Queens,pm,city,8,new,city,intersection,MV_AT,-123.298839,44.595047,2,0,0,5,44,5,54,0,2,2,7,0,0,0,9,63
+901,NW Sequoia and NW Fairlawn,pm,city,9,new,city,intersection,MV_AT,-123.257907,44.591054,2,1,3,1,114,14,133,NA,NA,8,28,0,0,0,36,169
+902,NW Sycamore and NW Janssen,pm,city,9,new,city,intersection,MV_AT,-123.260377,44.589965,2,0,1,0,113,0,114,12,2,14,34,2,0,2,50,164
+903,"NW Walnut, w. of Satinwood",am,city,9,new,city,street,MV_AT,-123.25978,44.593596,2,0,32,67,1754,269,2122,23,5,28,16,1,0,1,45,2167
+904,NW Satinwood and NW Maxine,am,city,9,new,city,intersection,MV_AT,-123.257401,44.597815,2,0,6,27,566,79,678,11,4,15,49,0,0,0,64,742
+906,NE Plymouth and NE Lancaster,am,city,9,new,city,intersection,MV_AT,-123.242135,44.596106,2,0,0,1,32,3,36,6,2,8,18,0,0,0,26,62
+907,NE Conifer and NE Lancaster,am,city,9,new,city,intersection,MV_AT,-123.242705,44.599891,2,1,25,51,781,97,955,3,4,7,47,1,0,1,55,1010
+908,NE Conifer and NE Conser,am,city,9,new,city,intersection,MV_AT,-123.233651,44.597824,2,1,14,15,508,84,622,3,0,3,12,1,1,2,17,639
+909,"NE Conifer, near OR99W",pm,city,9,new,city,street,MV_AT,-123.249251,44.59683,2,16,28,132,3758,285,4219,NA,NA,20,22,2,0,2,44,4263
+910,"NW Fairlawn, next to Walnut",am,city,9,new,city,street,MV_AT,-123.25978,44.593596,2,0,0,1,58,3,62,6,1,7,35,0,0,0,42,104
