@@ -1,3 +1,4 @@
+library(readr)
 
 data <- read_csv("data/modeshare.csv")
 
