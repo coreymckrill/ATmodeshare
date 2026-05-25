@@ -1,3 +1,4 @@
+library(dplyr)
 library(readr)
 
 data <- read_csv("data/modeshare.csv")
@@ -5,6 +6,10 @@ data <- read_csv("data/modeshare.csv")
 # Fix incorrect wards
 data[data$site_id == "602.1", "ward"] <- 6
 data[data$site_id == "702", "ward"] <- NA
+
+# Offset 601.1 from 601 so they are both clickable
+data[data$site_id == "602.1", "latitude"] <- 44.589177
+data[data$site_id == "602.1", "longitude"] <- -123.247064
 
 # Combine am and pm, calculate trips per hour
 combined_counts <-
