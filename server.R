@@ -99,6 +99,18 @@ function(input, output, session) {
         }
     })
     
+    # Trips per hour
+    output$valueBoxTotTrips <-
+        renderValueBox({
+            data <- data_modeshare_summary()
+            
+            valueBox(
+                format(data$trip_count, big.mark = ","),
+                "Trips per hour",
+                icon = icon("route")
+            )
+        })
+    
     # Active vs Motor Vehicle mode share
     output$plotPctModeShare <-
         renderPlot({
@@ -120,30 +132,43 @@ function(input, output, session) {
                         levels = c("Motor vehicle trips", "Active trips")
                     )
                 )
-            
             data |>
                 ggplot(
                     aes(
                         x = Percent,
                         y = factor(1),
+                        fill = Trips,
                     )
                 ) +
-                geom_bar(
+                geom_col() +
+                geom_text_repel(
                     aes(
-                        fill = Trips,
+                        label = paste(
+                            fill,
+                            ": ",
+                            round(after_stat(x), 1),
+                            "%",
+                            sep = ""
+                        )
                     ),
-                    stat = "identity",
-                    position = "fill"
+                    seed = 1,
+                    position = position_stacknudge(
+                        vjust = 0.5,
+                        x = c(5, -5),
+                        y = c(0.9, -0.9),
+                    ),
+                    segment.curvature = -1e-20,
+                    arrow = arrow(
+                        length = unit(0.05, "npc"),
+                        type = "closed"
+                    )
                 ) +
                 xlab("") +
                 ylab("") +
-                guides(
-                    fill = guide_legend(reverse = TRUE)
-                ) +
                 theme_void() +
                 theme(
-                    legend.title = element_blank(),
-                    legend.position = "bottom",
+                    legend.position = "none",
+                    plot.margin = margin(b = 10)
                 )
         })
     
@@ -170,6 +195,8 @@ function(input, output, session) {
                     )
                 )
             
+            maxpct_summary <- max(data$Percent)
+            
             data |>
                 ggplot(
                     aes(
@@ -182,26 +209,72 @@ function(input, output, session) {
                         fill = Mode
                     )
                 ) +
-                ylab("") +
-                guides(
-                    fill = guide_legend(reverse = TRUE)
+                geom_text(
+                    aes(
+                        label = paste(
+                            round(after_stat(x), 1),
+                            "%",
+                            sep = ""
+                        )
+                    ),
+                    hjust = -0.25
                 ) +
+                xlim(0, maxpct_summary * 1.1) +
+                ylab("") +
                 theme_void() +
                 theme(
-                    legend.title = element_blank(),
-                    legend.position = "bottom",
+                    axis.text.y = element_text(
+                        hjust = 1
+                    ),
+                    legend.position = "none",
+                    plot.margin = margin(b = 10)
                 )
                 
         })
     
-    # Total trips
-    output$valueBoxTotTrips <-
-        renderValueBox({
-            data <- data_modeshare_summary()
+    #
+    output$tableDetails <-
+        render_gt({
+            data <-
+                data_modeshare_subset() |>
+                st_drop_geometry()
             
-            valueBox(
-                format(data$trip_count, big.mark = ","),
-                "Total trips",
-            )
+            if (nrow(data) == 1) {
+                title <- data$site_desc
+                data <-
+                    data |>
+                    summarize(
+                        Walkscore = mean(walkscore),
+                        Bikescore = mean(bikescore)
+                    )
+            } else {
+                title <- sprintf(
+                    "%s locations",
+                    nrow(data)
+                )
+                data <-
+                    data |>
+                    summarize(
+                        "Average Walkscore" = round(mean(walkscore)),
+                        "Average Bikescore" = round(mean(bikescore))
+                    )
+            }
+            
+            data |>
+                pivot_longer(
+                    cols = everything(),
+                    names_to = "Detail",
+                    values_to = "Value"
+                ) |>
+                gt(
+                    rowname_col = "Detail"
+                ) |>
+                tab_header(
+                    title = title
+                ) |>
+                tab_options(
+                    column_labels.hidden = TRUE,
+                    table.width = "100%"
+                )
         })
 }

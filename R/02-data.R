@@ -1,32 +1,32 @@
 # Download city wards data
-get_data_wards <- function() {
+get_data_wards <- memoise::memoise(function() {
     read_sf("https://services6.arcgis.com/NNPaUnXVoJt8FVVE/arcgis/rest/services/Wards/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson")
-}
+})
 
 # Load modeshare data
-get_data_modeshare <- function() {
-    read_csv("data/modeshare.csv") |>
+get_data_modeshare <- memoise::memoise(function() {
+    read_csv("data/modeshare_plus.csv") |>
         mutate(
-            uid = paste0(site_id, ampm),
-            uid_highlighted = paste0(site_id, ampm, "_highlighted"),
+            uid = site_id,
+            uid_highlighted = paste0(site_id, "_highlighted"),
         ) |>
         st_as_sf(
             coords = c("longitude", "latitude"),
             crs = 4326 # Original data is in the WGS84 geographic coordinate system
         )
-}
+})
 
 # Generate summary data from a set of modeshare data
 get_data_modeshare_summary <- function(data) {
     data |>
         st_drop_geometry() |>
         summarize(
-            bike_count = sum(totbike, na.rm = TRUE),
-            ped_count = sum(ped, na.rm = TRUE),
-            roll_count = sum(tot_roll, na.rm = TRUE),
+            bike_count = sum(totbike_hr, na.rm = TRUE),
+            ped_count = sum(ped_hr, na.rm = TRUE),
+            roll_count = sum(tot_roll_hr, na.rm = TRUE),
             active_count = bike_count + ped_count + roll_count,
-            mv_count = sum(totMV, na.rm = TRUE),
-            trip_count = sum(tot_trips, na.rm = TRUE),
+            mv_count = sum(totMV_hr, na.rm = TRUE),
+            trip_count = sum(tot_trips_hr, na.rm = TRUE),
             bike_pct = (bike_count / trip_count) * 100,
             ped_pct = (ped_count / trip_count) * 100,
             roll_pct = (roll_count / trip_count) * 100,
@@ -81,7 +81,10 @@ filter_by_ward <- function(data, wardId) {
 }
 
 # Options for the Filter by city ward input
-choices_ward <- setNames(
-    rev(append(rev(data_wards$WARD), "all")),
-    c("All wards", "Ward 1", "Ward 2", "Ward 3", "Ward 4", "Ward 5", "Ward 6", "Ward 7", "Ward 8", "Ward 9")
-)
+get_choices_ward <- function() {
+    data_wards <- get_data_wards()
+    setNames(
+        rev(append(rev(data_wards$WARD), "all")),
+        c("All wards", "Ward 1", "Ward 2", "Ward 3", "Ward 4", "Ward 5", "Ward 6", "Ward 7", "Ward 8", "Ward 9")
+    )
+}

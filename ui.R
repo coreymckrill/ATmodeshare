@@ -8,46 +8,59 @@ sidebar <- dashboardSidebar(
     selectInput(
         "inputSelectWard",
         "Filter by city ward",
-        choices = choices_ward
+        choices = get_choices_ward()
     )
 )
 
 body <- dashboardBody(
     fluidRow(
         column(
-            width = 9,
+            width = 8,
             box(
                 solidHeader = TRUE,
                 width = NULL,
                 leafletOutput(
                     "mapMain",
-                    height = "80vh",
+                    height = "75vh",
                     width = "100%"
                 )
             )
         ),
         column(
-            width = 3,
+            width = 4,
+            # Stats box
             box(
                 solidHeader = TRUE,
                 width = NULL,
-                div(
-                    class = "small-box",
-                    plotOutput(
-                        "plotPctModeShare",
-                        height = 100
-                    ),
-                ),
-                div(
-                    class = "small-box",
-                    plotOutput(
-                        "plotPctActiveModeShare",
-                        height = 100
-                    ),
-                ),
                 valueBoxOutput(
                     "valueBoxTotTrips",
                     width = "100%"
+                ),
+                hr(),
+                h4(
+                    "Total Mode Share",
+                    style = "margin-top: 0;"
+                ),
+                plotOutput(
+                    "plotPctModeShare",
+                    height = "10vh"
+                ),
+                hr(),
+                h4(
+                    "Active Mode Share",
+                    style = "margin-top: 0;"
+                ),
+                plotOutput(
+                    "plotPctActiveModeShare",
+                    height = "10vh"
+                ),
+            ),
+            # Info box
+            box(
+                solidHeader = TRUE,
+                width = NULL,
+                gt_output(
+                    "tableDetails"
                 )
             )
         )
