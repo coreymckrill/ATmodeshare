@@ -1,5 +1,18 @@
 # Server function
 function(input, output, session) {
+    # Sidebar
+    output$sidebarInputs <-
+        renderUI({
+            if (input$sidebarNav == "map") {
+                selectInput(
+                    "inputSelectWard",
+                    "Filter by city ward",
+                    choices = get_choices_ward()
+                )
+            }
+        })
+    
+    # Body
     data_wards <- get_data_wards()
     data_modeshare <- get_data_modeshare()
     data_modeshare_subset <- reactiveVal(data_modeshare)
@@ -86,13 +99,16 @@ function(input, output, session) {
     
     # Handle inputs
     observe({
-        if (input$inputSelectWard != "all") {
+        if (
+            ! is.null(input$inputSelectWard)
+            && input$inputSelectWard != "all"
+        ) {
             subset <-
                 data_modeshare |>
                 get_data_modeshare_subset(
                     ward = input$inputSelectWard
                 )
-            
+
             data_modeshare_subset(subset)
         } else {
             data_modeshare_subset(data_modeshare)
