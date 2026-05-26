@@ -26,12 +26,31 @@ function(input, output, session) {
     )
     
     color_wards <- colorFactor("viridis", data_wards$WARD)
+    north_arrow <- div(
+        style = "margin-top: 0.5em;",
+        icon(
+            "location-arrow",
+            class = "fa-solid fa-2xl fa-rotate-by",
+            style = "margin-right: 0; --fa-rotate-angle: -45deg;"
+        )
+    )
     
     # Initial map output
     output$mapMain <-
         renderLeaflet({
             leaflet() |>
                 addProviderTiles(providers$Esri.WorldGrayCanvas) |>
+                addControl(
+                    north_arrow,
+                    position = "topright",
+                    className = ""
+                ) |>
+                addScaleBar(
+                    position = "bottomleft",
+                    options = scaleBarOptions(
+                        metric = FALSE
+                    )
+                ) |>
                 addPolygons(
                     data = data_wards,
                     stroke = FALSE,
