@@ -15,10 +15,15 @@ function(input, output, session) {
     # Body
     data_wards <- get_data_wards()
     data_modeshare <- get_data_modeshare()
-    data_modeshare_subset <- reactiveVal(data_modeshare)
+    data_modeshare_subset <- reactiveVal()
     data_modeshare_summary <- reactive({
         get_data_modeshare_summary(data_modeshare_subset())
     })
+    
+    filter_inputs <- reactiveValues(
+        ward = NULL,
+        uid = NULL
+    )
     
     color_wards <- colorFactor("viridis", data_wards$WARD)
     
@@ -43,6 +48,38 @@ function(input, output, session) {
                     layerId = ~uid,
                 )
         })
+    
+    #
+    observeEvent(
+        input$sidebarNav,
+        {
+            if (input$sidebarNav == "map") {
+                data_modeshare_subset(data_modeshare)
+                # filter_inputs$ward <- NULL
+                # filter_inputs$uid <- NULL
+            }
+        },
+        ignoreInit = TRUE,
+        once = TRUE
+    )
+    
+    # Handle changes to filter inputs
+    observe({
+        req(input$sidebarNav == "map")
+        
+        inputs_list <- reactiveValuesToList(filter_inputs)
+        
+        # Allow map clicks on locations that are not highlighted
+        if (! is.null(inputs_list$uid)) {
+            args <- list(data_modeshare, uid = inputs_list$uid)
+        } else {
+            args <- c(list(data_modeshare), inputs_list)
+        }
+        
+        subset <- do.call(get_data_modeshare_subset, args)
+        
+        data_modeshare_subset(subset)
+    })
     
     # Update which markers are highlighted when the modeshare subset changes
     observeEvent(data_modeshare_subset(), {
@@ -78,40 +115,19 @@ function(input, output, session) {
             )
         ) {
             # Marker was clicked
-            subset <-
-                data_modeshare |>
-                get_data_modeshare_subset(
-                    uid = marker_click$id
-                )
-            
-            data_modeshare_subset(subset)
+            filter_inputs$uid <- marker_click$id
         } else {
             # Basemap was clicked
-            subset <-
-                data_modeshare |>
-                get_data_modeshare_subset(
-                    ward = isolate(input$inputSelectWard)
-                )
-            
-            data_modeshare_subset(subset)
+            filter_inputs$uid <- NULL
         }
     })
     
-    # Handle inputs
-    observe({
-        if (
-            ! is.null(input$inputSelectWard)
-            && input$inputSelectWard != "all"
-        ) {
-            subset <-
-                data_modeshare |>
-                get_data_modeshare_subset(
-                    ward = input$inputSelectWard
-                )
-
-            data_modeshare_subset(subset)
+    # Handle ward filter input
+    observeEvent(input$inputSelectWard, {
+        if (input$inputSelectWard == "all") {
+            filter_inputs$ward <- NULL
         } else {
-            data_modeshare_subset(data_modeshare)
+            filter_inputs$ward <- input$inputSelectWard
         }
     })
     
