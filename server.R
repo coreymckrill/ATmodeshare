@@ -25,7 +25,6 @@ function(input, output, session) {
         uid = NULL
     )
     
-    color_wards <- colorFactor("viridis", data_wards$WARD)
     north_arrow <- div(
         style = "margin-top: 0.5em;",
         icon(
@@ -34,6 +33,8 @@ function(input, output, session) {
             style = "margin-right: 0; --fa-rotate-angle: -45deg;"
         )
     )
+    color_wards <- colorFactor("viridis", data_wards$WARD)
+    initial_bounds <- st_bbox(data_wards)
     
     # Initial map output
     output$mapMain <-
@@ -65,6 +66,12 @@ function(input, output, session) {
                     color = "#555",
                     fillColor = "#777",
                     layerId = ~uid,
+                ) |>
+                setMaxBounds(
+                    initial_bounds[["xmin"]],
+                    initial_bounds[["ymin"]],
+                    initial_bounds[["xmax"]],
+                    initial_bounds[["ymax"]]
                 )
         })
     
