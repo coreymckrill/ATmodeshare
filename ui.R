@@ -7,23 +7,15 @@ header <- dashboardHeader(
 sidebar <- dashboardSidebar(
     sidebarMenu(
         id = "sidebarNav",
-        menuItem("About", tabName = "about", selected = TRUE),
-        menuItem("Map", tabName = "map")
+        menuItem("Map", tabName = "map", selected = TRUE),
+        menuItem("FAQ", tabName = "faq")
     ),
     uiOutput("sidebarInputs")
 )
 
 body <- dashboardBody(
     tabItems(
-        tabItem(tabName = "about",
-            fluidRow(
-                box(
-                    width = 8,
-                    status = "primary",
-                    get_content_about()
-                )
-            )
-        ),
+        # Map tab
         tabItem(tabName = "map",
             fluidRow(
                 column(
@@ -75,6 +67,16 @@ body <- dashboardBody(
                             "tableDetails"
                         )
                     )
+                )
+            )
+        ),
+        # FAQ tab
+        tabItem(tabName = "faq",
+            fluidRow(
+                box(
+                    width = 8,
+                    status = "primary",
+                    get_content_about()
                 )
             )
         )
