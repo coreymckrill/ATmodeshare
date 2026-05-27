@@ -1,5 +1,4 @@
-library(dplyr)
-library(readr)
+library(tidyverse)
 
 data <- read_csv("data/modeshare.csv")
 
