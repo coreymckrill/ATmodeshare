@@ -9,8 +9,9 @@ function(input, output, session) {
     })
     
     filter_inputs <- reactiveValues(
-        ward = NULL,
-        uid = NULL
+        infra = NULL,
+        uid = NULL,
+        ward = NULL
     )
     
     north_arrow <- div(
@@ -37,6 +38,11 @@ function(input, output, session) {
                         "inputSelectWard",
                         "Filter by city ward",
                         choices = get_choices_ward()
+                    ),
+                    selectInput(
+                        "inputSelectBikeInfra",
+                        "Filter by bike infrastructure",
+                        choices = get_choices_bikeinfra()
                     )
                 )
             }
@@ -168,6 +174,15 @@ Welcome to the Corvallis Active Transportation Mode Share Explorer! Here you can
         } else {
             # Basemap was clicked
             filter_inputs$uid <- NULL
+        }
+    })
+    
+    # Handle bike infrastructure filter input
+    observeEvent(input$inputSelectBikeInfra, {
+        if (input$inputSelectBikeInfra == "all") {
+            filter_inputs$infra <- NULL
+        } else {
+            filter_inputs$infra <- input$inputSelectBikeInfra
         }
     })
     

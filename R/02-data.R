@@ -18,7 +18,7 @@ get_data_modeshare <- memoise::memoise(function() {
 
 # Load bike infrastructure data
 get_data_bikeinfra <- memoise::memoise(function() {
-    read_csv("data/modeshare_plus.csv")
+    read_csv("data/bikeinfra.csv")
 })
 
 # Generate summary data from a set of modeshare data
@@ -43,21 +43,45 @@ get_data_modeshare_summary <- function(data) {
 # Generate a subset of modeshare data
 get_data_modeshare_subset <- function(
     data,
-    ward = NULL,
-    uid = NULL
+    infra = NULL,
+    uid = NULL,
+    ward = NULL
 ) {
-    if (! is.null(ward)) {
+    if (! is.null(infra)) {
         data <-
             data |>
-            filter_by_ward(ward)
+            filter_by_infra(infra)
     }
     if (! is.null(uid)) {
         data <-
             data |>
             filter_by_uid(uid)
     }
+    if (! is.null(ward)) {
+        data <-
+            data |>
+            filter_by_ward(ward)
+    }
     
     data
+}
+
+# Filter modeshare data by type of bike infrastructure
+filter_by_infra <- function(data, infra) {
+    data_infra <- get_data_bikeinfra()
+    
+    if (infra != "all") {
+        data |>
+            inner_join(
+                data_infra,
+                by = join_by(site_id)
+            ) |>
+            filter(
+                bikeinfra == infra
+            )
+    } else {
+        data
+    }
 }
 
 # Filter modeshare data by the unique ID used on the map
@@ -87,9 +111,19 @@ filter_by_ward <- function(data, wardId) {
 
 # Options for the Filter by city ward input
 get_choices_ward <- function() {
-    data_wards <- get_data_wards()
+    data <- get_data_wards()
     setNames(
-        rev(append(rev(data_wards$WARD), "all")),
+        rev(append(rev(data$WARD), "all")),
         c("All wards", "Ward 1", "Ward 2", "Ward 3", "Ward 4", "Ward 5", "Ward 6", "Ward 7", "Ward 8", "Ward 9")
+    )
+}
+
+# Options for the Filter by bike infrastructure input
+get_choices_bikeinfra <- function() {
+    data <- get_data_bikeinfra()
+    bikeinfra <- sort(unique(data$bikeinfra))
+    setNames(
+        rev(append(rev(bikeinfra), "all")),
+        rev(append(rev(bikeinfra), "All infrastructure types"))
     )
 }
