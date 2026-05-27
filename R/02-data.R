@@ -17,7 +17,7 @@ get_data_modeshare <- memoise::memoise(function() {
 })
 
 # Load bike infrastructure data
-get_data_bikeinfra < memoise::memoise(function() {
+get_data_bikeinfra <- memoise::memoise(function() {
     read_csv("data/modeshare_plus.csv")
 })
 
