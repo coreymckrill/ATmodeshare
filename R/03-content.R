@@ -1,10 +1,6 @@
 # Content for About tab
 get_content_about <- function() {
     markdown("
-### Hello!
-
-Welcome to the Corvallis Active Transportation Mode Share Explorer! Here you can peruse mode share data for Corvallis, slice and dice it in different ways, and see a representative mode share for locations around the city.
-
 ### What do I do with this?
 
 Click on any circle marker on the map to see the active transportation mode share and total number of trips counted for that location. Click anywhere off of a circle marker to reset to the entire dataset. You can also use the filter options in the left sidebar to select different subsets of the data.

@@ -1,21 +1,9 @@
 # Server function
 function(input, output, session) {
-    # Sidebar
-    output$sidebarInputs <-
-        renderUI({
-            if (input$sidebarNav == "map") {
-                selectInput(
-                    "inputSelectWard",
-                    "Filter by city ward",
-                    choices = get_choices_ward()
-                )
-            }
-        })
-    
-    # Body
+    # Data
     data_wards <- get_data_wards()
     data_modeshare <- get_data_modeshare()
-    data_modeshare_subset <- reactiveVal()
+    data_modeshare_subset <- reactiveVal(data_modeshare)
     data_modeshare_summary <- reactive({
         get_data_modeshare_summary(data_modeshare_subset())
     })
@@ -35,6 +23,18 @@ function(input, output, session) {
     )
     color_wards <- colorFactor("viridis", data_wards$WARD)
     initial_bounds <- st_bbox(data_wards)
+    
+    # Sidebar
+    output$sidebarInputs <-
+        renderUI({
+            if (input$sidebarNav == "map") {
+                selectInput(
+                    "inputSelectWard",
+                    "Filter by city ward",
+                    choices = get_choices_ward()
+                )
+            }
+        })
     
     # Initial map output
     output$mapMain <-
@@ -75,17 +75,34 @@ function(input, output, session) {
                 )
         })
     
-    #
+    # Welcome modal
     observeEvent(
         input$sidebarNav,
         {
             if (input$sidebarNav == "map") {
-                data_modeshare_subset(data_modeshare)
-                # filter_inputs$ward <- NULL
-                # filter_inputs$uid <- NULL
+                # Show welcome message
+                showModal(
+                    modalDialog(
+                        title = NULL,
+                        easyClose = TRUE,
+                        size = "m",
+                        footer = NULL,
+                        p(
+                            "
+Welcome to the Corvallis Active Transportation Mode Share Explorer! Here you can peruse mode share data for Corvallis, Oregon, slice and dice it in different ways, and see a representative mode share for locations around the city.
+                            "
+                        ),
+                        p(
+                            style = "text-align: center;",
+                            modalButton(
+                                "Get started"
+                            )
+                        )
+                        
+                    )
+                )
             }
         },
-        ignoreInit = TRUE,
         once = TRUE
     )
     
@@ -290,7 +307,7 @@ function(input, output, session) {
                 
         })
     
-    #
+    # Data subset details
     output$tableDetails <-
         render_gt({
             data <-
