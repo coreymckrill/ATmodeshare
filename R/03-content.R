@@ -3,7 +3,7 @@ get_content_about <- function() {
     markdown("
 ### What do I do with this?
 
-Click on any circle marker on the map to see the active transportation mode share and total number of trips counted for that location. Click anywhere off of a circle marker to reset to the entire dataset. You can also use the filter options in the left sidebar to select different subsets of the data.
+Click on any circle marker on the map to see the active transportation mode share and number of trips per hour counted for that location. Click anywhere off of a circle marker to return to the entire dataset. You can also use the filter options in the left sidebar to select different subsets of the data.
 
 ### What is active transportation?
 

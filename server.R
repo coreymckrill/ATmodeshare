@@ -28,10 +28,16 @@ function(input, output, session) {
     output$sidebarInputs <-
         renderUI({
             if (input$sidebarNav == "map") {
-                selectInput(
-                    "inputSelectWard",
-                    "Filter by city ward",
-                    choices = get_choices_ward()
+                tagList(
+                    h4(
+                        class = "shiny-input-container",
+                        "Data subsets"
+                    ),
+                    selectInput(
+                        "inputSelectWard",
+                        "Filter by city ward",
+                        choices = get_choices_ward()
+                    )
                 )
             }
         })

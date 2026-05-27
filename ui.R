@@ -7,8 +7,23 @@ header <- dashboardHeader(
 sidebar <- dashboardSidebar(
     sidebarMenu(
         id = "sidebarNav",
-        menuItem("Map", tabName = "map", selected = TRUE),
-        menuItem("FAQ", tabName = "faq")
+        menuItem(
+            "Map",
+            tabName = "map",
+            icon = icon(
+                "map-location-dot",
+                style = "margin-right: 1em;"
+            ),
+            selected = TRUE
+        ),
+        menuItem(
+            "FAQ",
+            tabName = "faq",
+            icon = icon(
+                "circle-info",
+                style = "margin-right: 1em;"
+            )
+        )
     ),
     uiOutput("sidebarInputs")
 )
@@ -25,7 +40,7 @@ body <- dashboardBody(
                         width = NULL,
                         leafletOutput(
                             "mapMain",
-                            height = "75vh",
+                            height = "85vh",
                             width = "100%"
                         )
                     )
@@ -65,6 +80,30 @@ body <- dashboardBody(
                         width = NULL,
                         gt_output(
                             "tableDetails"
+                        )
+                    ),
+                    p(
+                        span(
+                            style = "display: inline-block;",
+                            "Dashboard by Corey McKrill."
+                        ),
+                        span(
+                            style = "display: inline-block;",
+                            "May, 2026."
+                        )
+                    ),
+                    p(
+                        span(
+                            style = "display: inline-block;",
+                            "Data sources: "
+                        ),
+                        span(
+                            style = "display: inline-block;",
+                            "Corvallis Sustainability Coalition, "
+                        ),
+                        span(
+                            style = "display: inline-block;",
+                            "City of Corvallis."
                         )
                     )
                 )
