@@ -27,16 +27,16 @@ data <-
     ) |>
     pivot_longer(
         cols = ! c(site_id),
-        names_to = "bike_infra",
+        names_to = "bikeinfra",
         values_to = "trueval",
         values_drop_na = TRUE
     ) |>
-    select(site_id, bike_infra)
+    select(site_id, bikeinfra)
 
 
 # Save to a new file
 write.csv(
     data,
-    "data/bike_infra.csv",
+    "data/bikeinfra.csv",
     row.names = FALSE
 )
