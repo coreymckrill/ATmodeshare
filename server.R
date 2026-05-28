@@ -394,13 +394,55 @@ function(input, output, session) {
                 data_modeshare_subset() |>
                 rename_vars()
             
-            data |>
+            plot <-
+                data |>
                 ggplot(
                     aes(
                         x = !!input$inputSelectX,
                         y = !!input$inputSelectY
                     )
                 ) +
-                geom_point()
+                geom_point(
+                    color = "#555",
+                    fill = "#777",
+                    size = 5,
+                    alpha = 0.5
+                )
+            
+            if (!!input$inputCheckboxTrendLine) {
+                show_se <- ifelse(nrow(data) < 10, FALSE, TRUE)
+                smooth_method <- ifelse(nrow(data) < 10, "lm", "loess")
+                
+                plot <-    
+                    plot +
+                    geom_smooth(
+                        formula = y ~ x,
+                        method = smooth_method,
+                        na.rm = TRUE,
+                        se = show_se,
+                    )
+            }
+            
+            plot <-
+                plot +
+                ylim(0, NA) +
+                theme(
+                    axis.title = element_text(
+                        family = "Source Sans Pro",
+                        size = 14
+                    ),
+                    axis.title.x = element_text(
+                        margin = margin(t = 12)
+                    ),
+                    axis.title.y = element_text(
+                        margin = margin(r = 12)
+                    ),
+                    axis.text = element_text(
+                        family = "Source Sans Pro",
+                        size = 12
+                    )
+                )
+            
+            plot
         })
 }

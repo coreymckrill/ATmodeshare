@@ -162,8 +162,13 @@ body <- dashboardBody(
                             "inputSelectY",
                             "Y axis",
                             get_choices_axis(),
-                            selected = "Total active trips per hour"
+                            selected = "Active trips mode share %"
                         ),
+                        checkboxInput(
+                            "inputCheckboxTrendLine",
+                            "Show trend line",
+                            value = TRUE
+                        )
                     )
                 )
             )

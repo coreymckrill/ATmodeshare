@@ -7,11 +7,11 @@ get_data_wards <- memoise::memoise(function() {
 get_data_modeshare <- memoise::memoise(function() {
     read_csv("data/modeshare_plus.csv") |>
         mutate(
-            totMV_pct = totMV_hr / tot_trips_hr,
-            totbike_pct = totbike_hr / tot_trips_hr,
-            ped_pct = ped_hr / tot_trips_hr,
-            tot_roll_pct = tot_roll_hr / tot_trips_hr,
-            totAT_pct = totAT_hr / tot_trips_hr
+            totMV_pct = (totMV_hr / tot_trips_hr) * 100,
+            totbike_pct = (totbike_hr / tot_trips_hr) * 100,
+            ped_pct = (ped_hr / tot_trips_hr) * 100,
+            tot_roll_pct = (tot_roll_hr / tot_trips_hr) * 100,
+            totAT_pct = (totAT_hr / tot_trips_hr) * 100
         ) |>
         mutate(
             uid = site_id,
