@@ -127,3 +127,50 @@ get_choices_bikeinfra <- function() {
         rev(append(rev(bikeinfra), "All infrastructure types"))
     )
 }
+
+# Choices for variables in X and Y on the interactive chart
+get_choices_axis <- function() {
+    data <-
+        get_data_modeshare() |>
+        st_drop_geometry() |>
+        select(
+            totAT_hr,
+            totbike_hr,
+            ped_hr,
+            tot_roll_hr,
+            totMV_hr,
+            tot_trips_hr,
+            walkscore,
+            bikescore
+        ) |>
+        relocate(
+            totAT_hr,
+            totbike_hr,
+            ped_hr,
+            tot_roll_hr,
+            totMV_hr,
+            tot_trips_hr,
+            walkscore,
+            bikescore
+        ) |>
+        rename_vars()
+        
+    data
+}
+
+# Change column names to human-readable form
+rename_vars <- function(modeshare_data) {
+    labels <- c(
+        "Total active trips per hour" = "totAT_hr",
+        "Bike trips per hour" = "totbike_hr",
+        "Pedestrian trips per hour" = "ped_hr",
+        "Other active trips per hour" = "tot_roll_hr",
+        "Motor vehicle trips per hour" = "totMV_hr",
+        "Total trips per hour" = "tot_trips_hr",
+        "Walkscore" = "walkscore",
+        "Bikescore" = "bikescore"
+    )
+    
+    modeshare_data |>
+        rename(any_of(labels))
+}

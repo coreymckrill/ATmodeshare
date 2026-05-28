@@ -22,27 +22,35 @@ function(input, output, session) {
             style = "margin-right: 0; --fa-rotate-angle: -45deg;"
         )
     )
-    color_wards <- colorFactor("viridis", data_wards$WARD)
+    color_wards <- colorFactor(
+        palette.colors(
+            n = 9,
+            palette = "Okabe-Ito"
+        ),
+        data_wards$WARD
+    )
     initial_bounds <- st_bbox(data_wards)
     
     # Sidebar
     output$sidebarInputs <-
         renderUI({
-            if (input$sidebarNav == "map") {
+            if (input$sidebarNav == "map" | input$sidebarNav == "chart") {
                 tagList(
-                    h4(
+                    p(
                         class = "shiny-input-container",
-                        "Data subsets"
+                        strong("Data subsets")
                     ),
                     selectInput(
                         "inputSelectWard",
                         "Filter by city ward",
-                        choices = get_choices_ward()
+                        choices = get_choices_ward(),
+                        selected = isolate(input$inputSelectWard)
                     ),
                     selectInput(
                         "inputSelectBikeInfra",
                         "Filter by bike infrastructure",
-                        choices = get_choices_bikeinfra()
+                        choices = get_choices_bikeinfra(),
+                        selected = isolate(input$inputSelectBikeInfra)
                     )
                 )
             }
@@ -66,9 +74,13 @@ function(input, output, session) {
                 ) |>
                 addPolygons(
                     data = data_wards,
-                    stroke = FALSE,
+                    stroke = TRUE,
+                    weight = 2,
+                    color = "#999",
+                    opacity = 0.5,
+                    dashArray = "4",
                     fillColor = ~color_wards(WARD),
-                    fillOpacity = 0.3,
+                    fillOpacity = 0.35,
                 ) |>
                 addCircleMarkers(
                     group = "baseMarkers",
@@ -99,11 +111,7 @@ function(input, output, session) {
                         easyClose = TRUE,
                         size = "m",
                         footer = NULL,
-                        p(
-                            "
-Welcome to the Corvallis Active Transportation Mode Share Explorer! Here you can peruse mode share data for Corvallis, Oregon, slice and dice it in different ways, and see a representative mode share for locations around the city.
-                            "
-                        ),
+                        get_content_welcome(),
                         p(
                             style = "text-align: center;",
                             modalButton(
@@ -120,7 +128,7 @@ Welcome to the Corvallis Active Transportation Mode Share Explorer! Here you can
     
     # Handle changes to filter inputs
     observe({
-        req(input$sidebarNav == "map")
+        req(input$sidebarNav == "map" | input$sidebarNav == "chart")
         
         inputs_list <- reactiveValuesToList(filter_inputs)
         
@@ -372,5 +380,22 @@ Welcome to the Corvallis Active Transportation Mode Share Explorer! Here you can
                     column_labels.hidden = TRUE,
                     table.width = "100%"
                 )
+        })
+    
+    # Chart with customizable X and Y
+    output$plotInteractiveChart <-
+        renderPlot({
+            data <-
+                data_modeshare_subset() |>
+                rename_vars()
+            
+            data |>
+                ggplot(
+                    aes(
+                        x = !!input$inputSelectX,
+                        y = !!input$inputSelectY
+                    )
+                ) +
+                geom_point()
         })
 }

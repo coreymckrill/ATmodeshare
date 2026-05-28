@@ -17,6 +17,14 @@ sidebar <- dashboardSidebar(
             selected = TRUE
         ),
         menuItem(
+            "Chart",
+            tabName = "chart",
+            icon = icon(
+                "chart-line",
+                style = "margin-right: 1em;"
+            )
+        ),
+        menuItem(
             "FAQ",
             tabName = "faq",
             icon = icon(
@@ -105,6 +113,42 @@ body <- dashboardBody(
                             style = "display: inline-block;",
                             "City of Corvallis."
                         )
+                    )
+                )
+            )
+        ),
+        # Chart tab
+        tabItem(tabName = "chart",
+            fluidRow(
+                column(
+                    width = 8,
+                    box(
+                        solidHeader = TRUE,
+                        width = NULL,
+                        plotOutput(
+                            "plotInteractiveChart",
+                            height = "85vh"
+                        )
+                    )
+                ),
+                column(
+                    width = 4,
+                    box(
+                        solidHeader = TRUE,
+                        width = NULL,
+                        #uiOutput("chartInputs")
+                        varSelectInput(
+                            "inputSelectX",
+                            "X axis",
+                            get_choices_axis(),
+                            selected = "Total trips per hour"
+                        ),
+                        varSelectInput(
+                            "inputSelectY",
+                            "Y axis",
+                            get_choices_axis(),
+                            selected = "Total active trips per hour"
+                        ),
                     )
                 )
             )

@@ -1,4 +1,11 @@
-# Content for About tab
+# Content for Welcome modal
+get_content_welcome <- function() {
+    markdown("
+Welcome to the Corvallis Active Transportation Mode Share Explorer! Here you can peruse mode share data for Corvallis, Oregon, slice and dice it in different ways, and see a representative mode share for locations around the city.   
+    ")
+}
+
+# Content for FAQ tab
 get_content_about <- function() {
     markdown("
 ### What do I do with this?
