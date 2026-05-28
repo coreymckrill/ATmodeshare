@@ -37,7 +37,7 @@ Active transportation, or active mobility, is the transport of people through no
         box(
             title = "What is mode share?",
             markdown("
-Mode share, or modal share, is the percentage of trips taken using a given mode or type of transportation, such as car or bike. In this case we are comparing the mode share of active transportation to that of motor vehicles.
+Mode share, or modal share, is the percentage of trips taken using a given mode or type of transportation, such as car or bike. In this case we are comparing the mode share of active transportation to that of motor vehicles at specific locations.
             "),
             collapsible = TRUE,
             collapsed = TRUE,
