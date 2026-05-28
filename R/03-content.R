@@ -51,7 +51,7 @@ Active transportation, or active mobility, is the transport of people through no
             markdown("
 Mode share, or modal share, is the percentage of trips taken using a given mode or type of transportation, such as car or bike. In this case we are comparing the mode share of active transportation to that of motor vehicles with observed data from specific locations.
 
-Typically, mode share is measured as part of the American Community Survey (ACS) by the U.S Census Bureau, where they ask people to self-report how they commute to work. For the year 2024, Corvallis's 5-year moving average bicycle mode share was 5.3% and the walking mode share was 9.9%<sup>1</sup>.
+Typically, mode share is measured as part of the American Community Survey (ACS) by the U.S. Census Bureau, where they ask people to self-report how they commute to work. For the year 2024, Corvallis's 5-year moving average bicycle mode share was 5.3% and the walking mode share was 9.9%<sup>1</sup>.
             "),
             footer = markdown("
 1. U.S. Census Bureau. \"[Commuting Characteristics by Sex.](https://data.census.gov/table/ACSST5Y2024.S0801?q=commute+to+work&g=160XX00US4115800)\" American Community Survey, ACS 5-Year Estimates Subject Tables, Table S0801. Accessed on 28 May 2026.
