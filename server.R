@@ -195,6 +195,7 @@ function(input, output, session) {
         } else {
             filter_inputs$infra <- input$inputSelectBikeInfra
         }
+        filter_inputs$uid = NULL
     })
     
     # Handle ward filter input
@@ -204,6 +205,7 @@ function(input, output, session) {
         } else {
             filter_inputs$ward <- input$inputSelectWard
         }
+        filter_inputs$uid = NULL
     })
     
     # Trips per hour
