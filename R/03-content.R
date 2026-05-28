@@ -1,7 +1,7 @@
 # Content for Welcome modal
 get_content_welcome <- function() {
     markdown("
-Welcome to the Corvallis Active Transportation Mode Share Explorer! Here you can peruse mode share data for Corvallis, Oregon, slice and dice it in different ways.
+Welcome to the Corvallis Active Transportation Mode Share Explorer! Here you can peruse mode share data for Corvallis, Oregon, and slice and dice it in different ways.
 
 Click on any circle marker on the map to see the active transportation mode share and number of trips per hour recorded for that location. Click anywhere off of a circle marker to return to the entire dataset. You can also use the filter options in the left sidebar to select different subsets of the data.
 
@@ -35,9 +35,26 @@ Active transportation, or active mobility, is the transport of people through no
             width = NULL
         ),
         box(
+            title = "What is included in each of the active transportation categories in this data?",
+            markdown("
+* Bicycle: trips by bike and electric bike
+* Pedestrian: walking trips
+* Other: trips by scooter, electric scooter, skateboard, Onewheel, and, apparently, horse
+            "),
+            collapsible = TRUE,
+            collapsed = TRUE,
+            status = "info",
+            width = NULL
+        ),
+        box(
             title = "What is mode share?",
             markdown("
-Mode share, or modal share, is the percentage of trips taken using a given mode or type of transportation, such as car or bike. In this case we are comparing the mode share of active transportation to that of motor vehicles at specific locations.
+Mode share, or modal share, is the percentage of trips taken using a given mode or type of transportation, such as car or bike. In this case we are comparing the mode share of active transportation to that of motor vehicles with observed data from specific locations.
+
+Typically, mode share is measured as part of the American Community Survey (ACS) by the U.S Census Bureau, where they ask people to self-report how they commute to work. For the year 2024, Corvallis's 5-year moving average bicycle mode share was 5.3% and the walking mode share was 9.9%<sup>1</sup>.
+            "),
+            footer = markdown("
+1. U.S. Census Bureau. \"[Commuting Characteristics by Sex.](https://data.census.gov/table/ACSST5Y2024.S0801?q=commute+to+work&g=160XX00US4115800)\" American Community Survey, ACS 5-Year Estimates Subject Tables, Table S0801. Accessed on 28 May 2026.
             "),
             collapsible = TRUE,
             collapsed = TRUE,
@@ -47,10 +64,22 @@ Mode share, or modal share, is the percentage of trips taken using a given mode 
         box(
             title = "Why does mode share matter?",
             markdown("
-Studies have shown that communities that are less dependent on motor vehicles, where residents are able to go about their lives using alternative transportation modes such as walking and biking, are both physically and socially healthier. There is also evidence that these types of communities enjoy increased prosperity because they have strong local businesses, attract more investment and tourism dollars, have increased property values, and have reduced road and infrastructure costs. Motor vehicles, of course, are also significant contributors to the climate crisis. So measuring mode share gives us valuable information that can be used to inform the public and set policy that can help make Corvallis a healthier, more prosperous place to live, while reducing its carbon footprint.
+Studies have shown that communities that are less dependent on motor vehicles, where residents are able to go about their lives using alternative transportation modes such as walking and biking, are both physically and socially healthier<sup>1</sup>. There is also evidence that these types of communities enjoy increased prosperity because they have strong local businesses, attract more investment and tourism dollars, have increased property values, and have reduced road and infrastructure costs<sup>2</sup>. Motor vehicles, of course, are also significant contributors to the climate crisis<sup>3</sup>. So measuring mode share gives us valuable information that can be used to inform the public and set policy that can help make Corvallis a healthier, more prosperous place to live, while reducing its carbon footprint.
             "),
             footer = markdown("
-                
+1. Ione Avila-Palencia (2018). \"[The effects of transport mode use on self-perceived health, mental health, and social contact measures: A cross-sectional and longitudinal study](https://ui.adsabs.harvard.edu/abs/2018EnInt.120..199A/abstract)\". _Environment International_.
+2. \"[Economic Benefits of Active Transportation](https://www.nctcog.org/trans/plan/lumo/bikeped/resources/ebat)\". _North Central Texas Council of Governments_. Accessed on 28 May 2026.
+3. \"[Carbon Pollution from Transportation](https://web.archive.org/web/20260528005510/https://www.epa.gov/transportation-air-pollution-and-climate-change/carbon-pollution-transportation)\". _U.S. Environmental Protection Agency_. Accessed on 28 May 2026.
+            "),
+            collapsible = TRUE,
+            collapsed = TRUE,
+            status = "info",
+            width = NULL
+        ),
+        box(
+            title = "What is Walk Score (and Bike Score)?",
+            markdown("
+Walk Score is a measure of a location's walkability. It uses network analysis of walking routes around the location to determine which amenities are within a walkable distance (generally one mile) and assign points based on the number of those amenities and their proximity. Bike Score is the same concept, but assesses a greater bikable distance. Walk Score and Bike Score are products of Redfin, you can read more [on their site](https://www.walkscore.com/methodology.shtml).
             "),
             collapsible = TRUE,
             collapsed = TRUE,

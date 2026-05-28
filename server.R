@@ -353,8 +353,8 @@ function(input, output, session) {
                 data <-
                     data |>
                     summarize(
-                        Walkscore = mean(walkscore),
-                        Bikescore = mean(bikescore)
+                        "Walk Score" = mean(walkscore),
+                        "Bike Score" = mean(bikescore)
                     )
             } else {
                 title <- sprintf(
@@ -364,8 +364,8 @@ function(input, output, session) {
                 data <-
                     data |>
                     summarize(
-                        "Average Walkscore" = round(mean(walkscore)),
-                        "Average Bikescore" = round(mean(bikescore))
+                        "Average Walk Score" = round(mean(walkscore)),
+                        "Average Bike Score" = round(mean(bikescore))
                     )
             }
             

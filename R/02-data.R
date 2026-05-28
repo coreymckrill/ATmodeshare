@@ -189,8 +189,8 @@ rename_vars <- function(modeshare_data) {
         "Motor vehicle trips per hour" = "totMV_hr",
         "Motor vehicle mode share %" = "totMV_pct",
         "Total trips per hour" = "tot_trips_hr",
-        "Walkscore" = "walkscore",
-        "Bikescore" = "bikescore"
+        "Walk Score" = "walkscore",
+        "Bike Score" = "bikescore"
     )
     
     modeshare_data |>
