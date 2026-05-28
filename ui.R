@@ -171,10 +171,9 @@ body <- dashboardBody(
         # FAQ tab
         tabItem(tabName = "faq",
             fluidRow(
-                box(
-                    width = 8,
-                    status = "primary",
-                    get_content_about()
+                column(
+                    width = 9,
+                    !!!get_content_faq()
                 )
             )
         )
