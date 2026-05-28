@@ -7,6 +7,13 @@ get_data_wards <- memoise::memoise(function() {
 get_data_modeshare <- memoise::memoise(function() {
     read_csv("data/modeshare_plus.csv") |>
         mutate(
+            totMV_pct = totMV_hr / tot_trips_hr,
+            totbike_pct = totbike_hr / tot_trips_hr,
+            ped_pct = ped_hr / tot_trips_hr,
+            tot_roll_pct = tot_roll_hr / tot_trips_hr,
+            totAT_pct = totAT_hr / tot_trips_hr
+        ) |>
+        mutate(
             uid = site_id,
             uid_highlighted = paste0(site_id, "_highlighted"),
         ) |>
@@ -135,20 +142,30 @@ get_choices_axis <- function() {
         st_drop_geometry() |>
         select(
             totAT_hr,
+            totAT_pct,
             totbike_hr,
+            totbike_pct,
             ped_hr,
+            ped_pct,
             tot_roll_hr,
+            tot_roll_pct,
             totMV_hr,
+            totMV_pct,
             tot_trips_hr,
             walkscore,
             bikescore
         ) |>
         relocate(
             totAT_hr,
+            totAT_pct,
             totbike_hr,
+            totbike_pct,
             ped_hr,
+            ped_pct,
             tot_roll_hr,
+            tot_roll_pct,
             totMV_hr,
+            totMV_pct,
             tot_trips_hr,
             walkscore,
             bikescore
@@ -162,10 +179,15 @@ get_choices_axis <- function() {
 rename_vars <- function(modeshare_data) {
     labels <- c(
         "Total active trips per hour" = "totAT_hr",
+        "Active trips mode share %" = "totAT_pct",
         "Bike trips per hour" = "totbike_hr",
+        "Bike mode share %" = "totbike_pct",
         "Pedestrian trips per hour" = "ped_hr",
+        "Pedestrian mode share %" = "ped_pct",
         "Other active trips per hour" = "tot_roll_hr",
+        "Other active trips mode share %" = "tot_roll_pct",
         "Motor vehicle trips per hour" = "totMV_hr",
+        "Motor vehicle mode share %" = "totMV_pct",
         "Total trips per hour" = "tot_trips_hr",
         "Walkscore" = "walkscore",
         "Bikescore" = "bikescore"

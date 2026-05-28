@@ -63,7 +63,7 @@ body <- dashboardBody(
                         width = NULL,
                         leafletOutput(
                             "mapMain",
-                            height = "85vh",
+                            height = "92vh",
                             width = "100%"
                         )
                     )
