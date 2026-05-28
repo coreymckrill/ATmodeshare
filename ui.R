@@ -106,16 +106,29 @@ body <- dashboardBody(
                         )
                     ),
                     p(
+                        style = "font-size: 1.3rem",
                         span(
                             style = "display: inline-block;",
-                            "Dashboard by Corey McKrill."
+                            "Dashboard by Corey McKrill",
+                            a(
+                                href = "https://github.com/coreymckrill/ATmodeshare",
+                                target = "_blank",
+                                img(
+                                    src = "GitHub_Invertocat_Black.png",
+                                    height = 13,
+                                    alt = "Github logo",
+                                    style = "vertical-align: center;"
+                                )
+                            )
                         ),
+                        br(),
                         span(
                             style = "display: inline-block;",
                             "May, 2026."
                         )
                     ),
                     p(
+                        style = "font-size: 1.3rem",
                         span(
                             style = "display: inline-block;",
                             "Data sources: "

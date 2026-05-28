@@ -5,7 +5,7 @@ Welcome to the Corvallis Active Transportation Mode Share Explorer! Here you can
 
 Click on any circle marker on the map to see the active transportation mode share and number of trips per hour recorded for that location. Click anywhere off of a circle marker to return to the entire dataset. You can also use the filter options in the left sidebar to select different subsets of the data.
 
-You can also view the data in a different format on the Chart screen.
+Explore the data in a different format on the Chart screen.
 
 Got questions? Check out the FAQ.
     ")
