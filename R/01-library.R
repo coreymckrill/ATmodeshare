@@ -12,5 +12,3 @@ library(shinydashboard)
 library(stringr)
 library(tidyr)
 library(viridis)
-
-reactiveConsole(TRUE)

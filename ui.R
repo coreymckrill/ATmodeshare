@@ -1,10 +1,25 @@
-
-header <- dashboardHeader(
-    title = "Active Transportation Mode Share in Corvallis, OR",
-    titleWidth = 450
-)
+header <- dashboardHeader(disable = TRUE)
 
 sidebar <- dashboardSidebar(
+    # Putting this here since dashboardPage() doesn't take it
+    tags$head(
+        tags$style(HTML("
+            body {
+                font-size: 1.6rem;
+            }
+        "))
+    ),
+    div(
+        style = "margin-top: -50px; margin-bottom: 1.6rem; padding: 15px 15px 0;",
+        h1(
+            style = "margin: 0; font-size: 2rem; font-weight: 700;",
+            "Active Transportation Mode Share"
+        ),
+        span(
+            style = "display: block; font-size: 1.4rem;",
+            "Corvallis, Oregon"
+        )
+    ),
     sidebarMenu(
         id = "sidebarNav",
         menuItem(
@@ -168,6 +183,8 @@ body <- dashboardBody(
 )
 
 dashboardPage(
+    title = "Active Transportation Mode Share, Corvallis, Oregon",
+    skin = "blue",
     header,
     sidebar,
     body

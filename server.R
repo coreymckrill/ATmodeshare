@@ -36,21 +36,24 @@ function(input, output, session) {
         renderUI({
             if (input$sidebarNav == "map" | input$sidebarNav == "chart") {
                 tagList(
-                    p(
-                        class = "shiny-input-container",
-                        strong("Data subsets")
-                    ),
-                    selectInput(
-                        "inputSelectWard",
-                        "Filter by city ward",
-                        choices = get_choices_ward(),
-                        selected = isolate(input$inputSelectWard)
-                    ),
-                    selectInput(
-                        "inputSelectBikeInfra",
-                        "Filter by bike infrastructure",
-                        choices = get_choices_bikeinfra(),
-                        selected = isolate(input$inputSelectBikeInfra)
+                    div(
+                        span(
+                            class = "shiny-input-container",
+                            style = "display: block; font-size: 1.8rem;",
+                            strong("Data subsets")
+                        ),
+                        selectInput(
+                            "inputSelectWard",
+                            "Filter by city ward",
+                            choices = get_choices_ward(),
+                            selected = isolate(input$inputSelectWard)
+                        ),
+                        selectInput(
+                            "inputSelectBikeInfra",
+                            "Filter by bike infrastructure",
+                            choices = get_choices_bikeinfra(),
+                            selected = isolate(input$inputSelectBikeInfra)
+                        )
                     )
                 )
             }
