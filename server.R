@@ -15,11 +15,15 @@ function(input, output, session) {
     )
     
     north_arrow <- div(
-        style = "margin-top: 0.5em;",
+        style = "display: flex; flex-direction: column; color: #777; margin-top: 1.4rem;",
         icon(
             "location-arrow",
             class = "fa-solid fa-2xl fa-rotate-by",
             style = "margin-right: 0; --fa-rotate-angle: -45deg;"
+        ),
+        span(
+            style = "display: block; color: #777; font-family: Source Sans Pro; font-size: 2.4rem; font-weight: 700; line-height: 1.5; text-align: center; width: 100%;",
+            "N"
         )
     )
     color_wards <- colorFactor(
@@ -328,7 +332,7 @@ function(input, output, session) {
                     ),
                     hjust = -0.25
                 ) +
-                xlim(0, maxpct_summary * 1.1) +
+                xlim(0, maxpct_summary * 1.3) +
                 ylab("") +
                 theme_void() +
                 theme(
@@ -403,10 +407,11 @@ function(input, output, session) {
                     )
                 ) +
                 geom_point(
+                    shape = 21,
                     color = "#555",
-                    fill = "#777",
+                    fill = "darkorange",
                     size = 5,
-                    alpha = 0.5
+                    alpha = 0.6
                 )
             
             if (!!input$inputCheckboxTrendLine) {
