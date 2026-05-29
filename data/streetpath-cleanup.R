@@ -4,8 +4,7 @@ data <- read_csv("data/modeshare_streetpath_raw.csv")
 
 data <-
     data |>
-    select(site_id, BIKE_FAC, MULTIUSE_PATH) |>
-    unique() |>
+    select(site_id, BIKE_FAC, MU_PATH) |>
     mutate(
         across(
             where(is.character),
@@ -14,16 +13,17 @@ data <-
     ) |>
     mutate(
         BIKE_FAC = ifelse(is.na(BIKE_FAC), "None", BIKE_FAC),
-        MULTIUSE_PATH = ifelse(is.na(MULTIUSE_PATH), NA, TRUE),
+        MU_PATH = ifelse(is.na(MU_PATH), NA, TRUE),
         trueval = TRUE,
     ) |>
+    unique() |>
     pivot_wider(
         names_from = BIKE_FAC,
         values_from = trueval,
         values_fill = NA
     ) |>
     rename(
-        "Multi-Use Path" = MULTIUSE_PATH
+        "Multi-Use Path" = MU_PATH
     ) |>
     pivot_longer(
         cols = ! c(site_id),
