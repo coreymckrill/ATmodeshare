@@ -51,6 +51,7 @@ get_data_modeshare_summary <- function(data) {
 get_data_modeshare_subset <- function(
     data,
     infra = NULL,
+    other = NULL,
     uid = NULL,
     ward = NULL
 ) {
@@ -58,6 +59,11 @@ get_data_modeshare_subset <- function(
         data <-
             data |>
             filter_by_infra(infra)
+    }
+    if (! is.null(other)) {
+        data <-
+            data |>
+            filter_by_other(other)
     }
     if (! is.null(uid)) {
         data <-
@@ -91,6 +97,34 @@ filter_by_infra <- function(data, infra) {
     }
 }
 
+# Filter modeshare data by ward number
+filter_by_ward <- function(data, wardId) {
+    if (wardId != "all") {
+        data |>
+            filter(
+                ward == wardId
+            )
+    } else {
+        data
+    }
+}
+
+#
+filter_by_other <- function(data, other) {
+    if (other == "osu") {
+        data |>
+            filter(
+                osu_city == "osu"
+            )
+    } else if (other == "walkscore") {
+        data |>
+            arrange(desc(walkscore)) |>
+            slice(1:20)
+    } else {
+        data
+    }
+}
+
 # Filter modeshare data by the unique ID used on the map
 filter_by_uid <- function(data, id) {
     # The layerID of the map marker might have a "_highlighted" suffix
@@ -102,18 +136,6 @@ filter_by_uid <- function(data, id) {
         filter(
             uid == id
         )
-}
-
-# Filter modeshare data by ward number
-filter_by_ward <- function(data, wardId) {
-    if (wardId != "all") {
-        data |>
-            filter(
-                ward == wardId
-            )
-    } else {
-        data
-    }
 }
 
 # Options for the Filter by city ward input
@@ -131,7 +153,15 @@ get_choices_bikeinfra <- function() {
     bikeinfra <- sort(unique(data$bikeinfra))
     setNames(
         rev(append(rev(bikeinfra), "all")),
-        rev(append(rev(bikeinfra), "All infrastructure types"))
+        rev(append(rev(bikeinfra), "All types"))
+    )
+}
+
+#
+get_choices_other <- function() {
+    setNames(
+        c("none", "osu", "walkscore"),
+        c("None", "Locations near OSU", "Top 20 Walk Score")
     )
 }
 

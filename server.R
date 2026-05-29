@@ -47,16 +47,22 @@ function(input, output, session) {
                             strong("Data subsets")
                         ),
                         selectInput(
+                            "inputSelectBikeInfra",
+                            "Bike infrastructure",
+                            choices = get_choices_bikeinfra(),
+                            selected = isolate(input$inputSelectBikeInfra)
+                        ),
+                        selectInput(
                             "inputSelectWard",
-                            "Filter by city ward",
+                            "City ward",
                             choices = get_choices_ward(),
                             selected = isolate(input$inputSelectWard)
                         ),
                         selectInput(
-                            "inputSelectBikeInfra",
-                            "Filter by bike infrastructure",
-                            choices = get_choices_bikeinfra(),
-                            selected = isolate(input$inputSelectBikeInfra)
+                            "inputSelectOther",
+                            "Other subsets",
+                            choices = get_choices_other(),
+                            selected = isolate(input$inputSelectOther)
                         )
                     )
                 )
@@ -208,6 +214,16 @@ function(input, output, session) {
             filter_inputs$ward <- NULL
         } else {
             filter_inputs$ward <- input$inputSelectWard
+        }
+        filter_inputs$uid = NULL
+    })
+    
+    #
+    observeEvent(input$inputSelectOther, {
+        if (input$inputSelectOther == "none") {
+            filter_inputs$other <- NULL
+        } else {
+            filter_inputs$other <- input$inputSelectOther
         }
         filter_inputs$uid = NULL
     })
