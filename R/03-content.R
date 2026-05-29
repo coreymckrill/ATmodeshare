@@ -1,14 +1,48 @@
 # Content for Welcome modal
 get_content_welcome <- function() {
-    markdown("
-Welcome to the Corvallis Active Transportation Mode Share Explorer! Here you can peruse mode share data for Corvallis, Oregon, and slice and dice it in different ways.
-
-Click on any circle marker on the map to see the active transportation mode share and number of trips per hour recorded for that location. Click anywhere off of a circle marker to return to the entire dataset. You can also use the filter options in the left sidebar to select different subsets of the data.
-
-Explore the data in a different format on the Chart screen.
-
-Got questions? Check out the FAQ.
-    ")
+    tagList(
+        p(
+            strong(
+                "Welcome!"
+            )
+        ),
+        p(
+            "\"Active transportation\" is people making trips through some mode of physical activity, like walking or biking. \"Mode share\" is the percentage of trips made in a specific mode. This tool allows you to explore the active transportation mode share at different places around Corvallis, Oregon, comparing it to the motor vehicle mode share."
+        ),
+        p(
+            HTML(
+                paste(
+                    icon("map-location-dot", style = "margin-right: 0.3rem;"),
+                    "Map"
+                )
+            ),
+        ),
+        p(
+            "Click on any circle marker on the map to see the active transportation mode share and number of trips per hour recorded for that location. Click anywhere off of a circle marker to return to the entire dataset. You can also use the filter options in the left sidebar to select different subsets of the data." 
+        ),
+        p(
+            HTML(
+                paste(
+                    icon("chart-line", style = "margin-right: 0.3rem;"),
+                    "Chart"
+                )
+            ),
+        ),
+        p(
+            "Explore the data in a chart format, choosing which variables to compare."
+        ),
+        p(
+            HTML(
+                paste(
+                    icon("circle-info", style = "margin-right: 0.3rem;"),
+                    "FAQ"
+                )
+            ),
+        ),
+        p(
+            "More info about active transportation, mode share, and the data."
+        )
+    )
 }
 
 # Content for FAQ tab
@@ -77,7 +111,7 @@ Studies have shown that communities that are less dependent on motor vehicles, w
             width = NULL
         ),
         box(
-            title = "What is Walk Score (and Bike Score)?",
+            title = "What are Walk Score and Bike Score?",
             markdown("
 Walk Score is a measure of a location's walkability. It uses network analysis of walking routes around the location to determine which amenities are within a walkable distance (generally one mile) and assign points based on the number of those amenities and their proximity. Bike Score is the same concept, but assesses a greater bikable distance. Walk Score and Bike Score are products of Redfin, you can read more [on their site](https://www.walkscore.com/methodology.shtml).
             "),

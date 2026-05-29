@@ -122,7 +122,7 @@ function(input, output, session) {
                         p(
                             style = "text-align: center;",
                             modalButton(
-                                "Get started"
+                                "Let's go"
                             )
                         )
                         
