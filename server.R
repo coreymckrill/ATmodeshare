@@ -45,10 +45,15 @@ function(input, output, session) {
             if (input$sidebarNav == "map" | input$sidebarNav == "chart") {
                 tagList(
                     div(
-                        span(
+                        p(
                             class = "shiny-input-container",
-                            style = "display: block; font-size: 1.8rem;",
-                            strong("Data subsets")
+                            style = "font-size: 1.8rem;",
+                            strong("Data subsets"),
+                            actionLink(
+                                style = "display: inline-block; margin-left: 1rem; font-size: 1.3rem;",
+                                "actionFilterReset",
+                                "Reset"
+                            )
                         ),
                         selectInput(
                             "inputSelectBikeInfra",
@@ -179,6 +184,25 @@ function(input, output, session) {
         subset <- do.call(get_data_modeshare_subset, args)
         
         data_modeshare_subset(subset)
+    })
+    
+    # Handle reset link
+    observeEvent(input$actionFilterReset, {
+        updateSelectInput(
+            "inputSelectBikeInfra",
+            selected = "all",
+            session = session
+        )
+        updateSelectInput(
+            "inputSelectWard",
+            selected = "all",
+            session = session
+        )
+        updateSelectInput(
+            "inputSelectOther",
+            selected = "none",
+            session = session
+        )
     })
     
     # Update which markers are highlighted when the modeshare subset changes
