@@ -139,7 +139,11 @@ body <- dashboardBody(
                         ),
                         span(
                             style = "display: inline-block;",
-                            "City of Corvallis."
+                            "City of Corvallis,"
+                        ),
+                        span(
+                            style = "display: inline-block;",
+                            "Walk Score."
                         )
                     )
                 )
