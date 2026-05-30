@@ -109,7 +109,7 @@ function(input, output, session) {
     output$mapMain <-
         renderLeaflet({
             leaflet() |>
-                addProviderTiles(providers$Esri.WorldGrayCanvas) |>
+                addProviderTiles(providers$CartoDB.Positron) |>
                 addControl(
                     north_arrow,
                     position = "topright",
