@@ -134,6 +134,22 @@ filter_by_other <- function(data, other) {
             filter(
                 osu_city == "osu"
             )
+    } else if (other == "topbike_hr") {
+        data |>
+            arrange(desc(totbike_hr)) |>
+            slice(1:20)
+    } else if (other == "topbike_pct") {
+        data |>
+            arrange(desc(totbike_pct)) |>
+            slice(1:20)
+    } else if (other == "topped_hr") {
+        data |>
+            arrange(desc(ped_hr)) |>
+            slice(1:20)
+    } else if (other == "topped_pct") {
+        data |>
+            arrange(desc(ped_pct)) |>
+            slice(1:20)
     } else if (other == "walkscore") {
         data |>
             arrange(desc(walkscore)) |>
@@ -178,8 +194,24 @@ get_choices_bikeinfra <- function() {
 #
 get_choices_other <- function() {
     setNames(
-        c("none", "osu", "walkscore"),
-        c("---", "Locations near OSU", "Top 20 Walk Score")
+        c(
+            "none",
+            "osu",
+            "topbike_hr",
+            "topbike_pct",
+            "topped_hr",
+            "topped_pct",
+            "walkscore"
+        ),
+        c(
+            "---",
+            "Locations near OSU",
+            "Top 20 bike trips per hour",
+            "Top 20 bike mode %",
+            "Top 20 ped trips per hour",
+            "Top 20 ped mode %",
+            "Top 20 Walk Score"
+        )
     )
 }
 
