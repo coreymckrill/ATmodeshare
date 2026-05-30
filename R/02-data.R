@@ -258,6 +258,7 @@ get_choices_axis <- function() {
 # Change column names to human-readable form
 rename_vars <- function(modeshare_data) {
     labels <- c(
+        "Location" = "site_desc",
         "Total active trips per hour" = "totAT_hr",
         "Active trips mode share %" = "totAT_pct",
         "Bike trips per hour" = "totbike_hr",

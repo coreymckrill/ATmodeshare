@@ -503,10 +503,19 @@ function(input, output, session) {
     
     # Chart with customizable X and Y
     output$plotInteractiveChart <-
-        renderPlot({
+        renderPlotly({
             data <-
                 data_modeshare_subset() |>
-                rename_vars()
+                rename_vars() |>
+                mutate(
+                    text = paste0(
+                        "<span style='display: block; padding: 0.5rem; text-align: left;'>",
+                        "Location: ", site_desc, "<br>",
+                        input$inputSelectX, ": ", format(round(!!input$inputSelectX, 1), big.mark = ","), "<br>",
+                        input$inputSelectY, ": ", format(round(!!input$inputSelectY, 1), big.mark = ","),
+                        "</span>"
+                    )
+                )
             
             plot <-
                 data |>
@@ -516,16 +525,18 @@ function(input, output, session) {
                         y = !!input$inputSelectY
                     )
                 ) +
-                geom_point(
+                suppressWarnings(geom_point(
+                    aes(
+                        text = text
+                    ),
                     shape = 21,
                     color = "#555",
                     fill = "darkorange",
                     size = 5,
                     alpha = 0.6
-                )
+                ))
             
             if (!!input$inputCheckboxTrendLine) {
-                show_se <- ifelse(nrow(data) < 10, FALSE, TRUE)
                 smooth_method <- ifelse(nrow(data) < 10, "lm", "loess")
                 
                 plot <-    
@@ -534,7 +545,7 @@ function(input, output, session) {
                         formula = y ~ x,
                         method = smooth_method,
                         na.rm = TRUE,
-                        se = show_se,
+                        se = FALSE,
                     )
             }
             
@@ -558,6 +569,19 @@ function(input, output, session) {
                     )
                 )
             
-            plot
+            ggplotly(
+                plot,
+                tooltip = "text"
+            ) |>
+                layout(
+                    hoverlabel = list(
+                        bgcolor = "white",
+                        font = list(
+                            size = 12,
+                            color = "black"
+                        )
+                    )
+                ) |>
+                config(displayModeBar = F)
         })
 }

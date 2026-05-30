@@ -157,9 +157,9 @@ body <- dashboardBody(
                     box(
                         solidHeader = TRUE,
                         width = NULL,
-                        plotOutput(
+                        plotlyOutput(
                             "plotInteractiveChart",
-                            height = "85vh"
+                            height = "92vh"
                         )
                     )
                 ),
