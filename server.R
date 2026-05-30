@@ -30,10 +30,6 @@ function(input, output, session) {
             "N"
         )
     )
-    color_infra <- colorFactor(
-        topo.colors(4),
-        data_street_infra$BIKE_FAC
-    )
     color_wards <- colorFactor(
         palette.colors(
             n = 9,
