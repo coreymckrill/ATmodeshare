@@ -102,7 +102,7 @@ Studies have shown that communities that are less dependent on motor vehicles, w
             "),
             footer = markdown("
 1. Ione Avila-Palencia (2018). \"[The effects of transport mode use on self-perceived health, mental health, and social contact measures: A cross-sectional and longitudinal study](https://ui.adsabs.harvard.edu/abs/2018EnInt.120..199A/abstract)\". _Environment International_.
-2. \"[Economic Benefits of Active Transportation](https://www.nctcog.org/trans/plan/lumo/bikeped/resources/ebat)\". _North Central Texas Council of Governments_. Accessed on 28 May 2026.
+2. Colin Buchanan (2007). \"[Paved With Gold](https://webarchive.nationalarchives.gov.uk/ukgwa/20110118100601/http://www.cabe.org.uk/publications/paved-with-gold)\". _Commission for Architecture and the Built Environment_.
 3. \"[Carbon Pollution from Transportation](https://web.archive.org/web/20260528005510/https://www.epa.gov/transportation-air-pollution-and-climate-change/carbon-pollution-transportation)\". _U.S. Environmental Protection Agency_. Accessed on 28 May 2026.
             "),
             collapsible = TRUE,
