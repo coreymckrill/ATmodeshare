@@ -125,7 +125,7 @@ function(input, output, session) {
                     group = "baseWards",
                     data = data_wards,
                     stroke = TRUE,
-                    weight = 1,
+                    weight = 2,
                     color = "#999",
                     opacity = 0.2,
                     fillColor = ~color_wards(WARD),
@@ -135,14 +135,14 @@ function(input, output, session) {
                     group = "baseStreetLines",
                     data = data_street_infra,
                     weight = 2,
-                    opacity = 0.2,
+                    opacity = 0.3,
                     color = "#555"
                 ) |>
                 addPolylines(
                     group = "baseMUPaths",
                     data = data_mu_paths,
                     weight = 2,
-                    opacity = 0.2,
+                    opacity = 0.3,
                     color = "#555"
                 ) |>
                 addCircleMarkers(
@@ -272,7 +272,7 @@ function(input, output, session) {
                     group = "highlightStreetLines",
                     data = data_infra_highlight,
                     weight = 2,
-                    opacity = 0.6,
+                    opacity = 0.7,
                     color = "darkred"
                 )
         }
@@ -467,8 +467,10 @@ function(input, output, session) {
                 data <-
                     data |>
                     summarize(
-                        "Walk Score" = mean(walkscore),
-                        "Bike Score" = mean(bikescore)
+                        "Active trips per hour" = totAT_hr,
+                        "Motor vehivle trips per hour" = totMV_hr,
+                        "Walk Score" = walkscore,
+                        "Bike Score" = bikescore
                     )
             } else {
                 title <- sprintf(
@@ -478,10 +480,14 @@ function(input, output, session) {
                 data <-
                     data |>
                     summarize(
+                        "Total active trips per hour" = sum(totAT_hr),
+                        "Total motor vehicle trips per hour" = sum(totMV_hr),
                         "Average Walk Score" = round(mean(walkscore)),
                         "Average Bike Score" = round(mean(bikescore))
                     )
             }
+            
+            data[] <- lapply(data, function(x) format(x, big.mark = ","))
             
             data |>
                 pivot_longer(
@@ -497,7 +503,10 @@ function(input, output, session) {
                 ) |>
                 tab_options(
                     column_labels.hidden = TRUE,
-                    table.width = "100%"
+                    table.width = "100%",
+                    table.font.names = c("Source Sans Pro", "sans-serif"),
+                    table.font.size = 13,
+                    heading.title.font.size = 16
                 )
         })
     
