@@ -510,7 +510,7 @@ function(input, output, session) {
                 mutate(
                     text = paste0(
                         "<span style='display: block; padding: 0.5rem; text-align: left;'>",
-                        "Location: ", site_desc, "<br>",
+                        "Location: ", Location, "<br>",
                         input$inputSelectX, ": ", format(round(!!input$inputSelectX, 1), big.mark = ","), "<br>",
                         input$inputSelectY, ": ", format(round(!!input$inputSelectY, 1), big.mark = ","),
                         "</span>"

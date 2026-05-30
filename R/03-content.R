@@ -51,7 +51,7 @@ get_content_faq <- function() {
         box(
             title = "Where did this data come from?",
             markdown("
-The City of Corvallis did annual bicycle trip counts at a limited set of locations from 2012 to 2015. In 2025, the Transportation Action Team of the [Corvallis Sustainability Coalition](https://sustainablecorvallis.org/) decided to revive the trip counts, but include additional active transportation modes, and survey more locations. During a four-day span in October 2025, 42 volunteers spent 201 hours counting trips and their modes at 91 different locations around the city.
+The City of Corvallis did annual bicycle trip counts at a limited set of locations from 2012 to 2015. In 2025, the Transportation Action Team of the [Corvallis Sustainability Coalition](https://sustainablecorvallis.org/) decided to revive the trip counts, but include additional active transportation modes, and survey more locations. During a four-day span in October 2025, 42 volunteers spent 201 hours counting trips by mode at 91 different locations around the city.
             "),
             collapsible = TRUE,
             collapsed = TRUE,
@@ -69,7 +69,7 @@ Active transportation, or active mobility, is the transport of people through no
             width = NULL
         ),
         box(
-            title = "What is included in each of the active transportation categories in this data?",
+            title = "What is included in each of the active transportation categories in these data?",
             markdown("
 * Bicycle: trips by bike and electric bike
 * Pedestrian: walking trips
