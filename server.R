@@ -1,7 +1,10 @@
 # Server function
 function(input, output, session) {
     # Data
+    data_street_infra <- get_data_street_infra()
+    data_mu_paths <- get_data_mu_paths()
     data_wards <- get_data_wards()
+    
     data_modeshare <- get_data_modeshare()
     data_modeshare_subset <- reactiveVal(data_modeshare)
     data_modeshare_summary <- reactive({
@@ -10,6 +13,7 @@ function(input, output, session) {
     
     filter_inputs <- reactiveValues(
         infra = NULL,
+        other = NULL,
         uid = NULL,
         ward = NULL
     )
@@ -25,6 +29,10 @@ function(input, output, session) {
             style = "display: block; color: #777; font-family: Source Sans Pro; font-size: 2.4rem; font-weight: 700; line-height: 1.5; text-align: center; width: 100%;",
             "N"
         )
+    )
+    color_infra <- colorFactor(
+        topo.colors(4),
+        data_street_infra$BIKE_FAC
     )
     color_wards <- colorFactor(
         palette.colors(
@@ -68,50 +76,7 @@ function(input, output, session) {
                 )
             }
         })
-    
-    # Initial map output
-    output$mapMain <-
-        renderLeaflet({
-            leaflet() |>
-                addProviderTiles(providers$Esri.WorldGrayCanvas) |>
-                addControl(
-                    north_arrow,
-                    position = "topright",
-                    className = ""
-                ) |>
-                addScaleBar(
-                    position = "bottomleft",
-                    options = scaleBarOptions(
-                        metric = FALSE
-                    )
-                ) |>
-                addPolygons(
-                    data = data_wards,
-                    stroke = TRUE,
-                    weight = 2,
-                    color = "#999",
-                    opacity = 0.5,
-                    dashArray = "4",
-                    fillColor = ~color_wards(WARD),
-                    fillOpacity = 0.35,
-                ) |>
-                addCircleMarkers(
-                    group = "baseMarkers",
-                    data = data_modeshare,
-                    radius = 9,
-                    weight = 1,
-                    color = "#555",
-                    fillColor = "#777",
-                    layerId = ~uid,
-                ) |>
-                setMaxBounds(
-                    initial_bounds[["xmin"]],
-                    initial_bounds[["ymin"]],
-                    initial_bounds[["xmax"]],
-                    initial_bounds[["ymax"]]
-                )
-        })
-    
+
     # Welcome modal
     observeEvent(
         input$sidebarNav,
@@ -138,6 +103,69 @@ function(input, output, session) {
         },
         once = TRUE
     )
+    
+    # Initial map output
+    output$mapMain <-
+        renderLeaflet({
+            leaflet() |>
+                addProviderTiles(providers$Esri.WorldGrayCanvas) |>
+                addControl(
+                    north_arrow,
+                    position = "topright",
+                    className = ""
+                ) |>
+                addScaleBar(
+                    position = "bottomleft",
+                    options = scaleBarOptions(
+                        metric = FALSE
+                    )
+                ) |>
+                addPolygons(
+                    group = "baseWards",
+                    data = data_wards,
+                    stroke = TRUE,
+                    weight = 1,
+                    color = "#999",
+                    opacity = 0.2,
+                    fillColor = ~color_wards(WARD),
+                    fillOpacity = 0.1,
+                ) |>
+                addPolylines(
+                    group = "baseStreetLines",
+                    data = data_street_infra,
+                    weight = 2,
+                    opacity = 0.2,
+                    color = "#555"
+                ) |>
+                addPolylines(
+                    group = "baseMUPaths",
+                    data = data_mu_paths,
+                    weight = 2,
+                    opacity = 0.2,
+                    color = "#555"
+                ) |>
+                addCircleMarkers(
+                    group = "baseMarkers",
+                    data = data_modeshare,
+                    radius = 9,
+                    weight = 1,
+                    color = "#555",
+                    fillColor = "#777",
+                    layerId = ~uid,
+                ) |>
+                fitBounds(
+                    initial_bounds[["xmin"]],
+                    initial_bounds[["ymin"]],
+                    initial_bounds[["xmax"]],
+                    initial_bounds[["ymax"]]
+                ) |>
+                setMaxBounds(
+                    initial_bounds[["xmin"]],
+                    initial_bounds[["ymin"]],
+                    initial_bounds[["xmax"]],
+                    initial_bounds[["ymax"]]
+                )
+        })
     
     # Handle changes to filter inputs
     observe({
@@ -171,7 +199,7 @@ function(input, output, session) {
                 color = "#555",
                 opacity = 1,
                 fillColor = "darkorange",
-                fillOpacity = 1,
+                fillOpacity = 0.8,
                 # This layerId has to be different from the base markers
                 layerId = ~uid_highlighted,
             )
@@ -202,8 +230,31 @@ function(input, output, session) {
     observeEvent(input$inputSelectBikeInfra, {
         if (input$inputSelectBikeInfra == "all") {
             filter_inputs$infra <- NULL
+            
+            leafletProxy("mapMain") |>
+                clearGroup("highlightStreetLines")
         } else {
             filter_inputs$infra <- input$inputSelectBikeInfra
+            
+            if (input$inputSelectBikeInfra == "Multi-Use Path") {
+                data_infra_highlight <- data_mu_paths
+            } else {
+                data_infra_highlight <-
+                    data_street_infra |>
+                    filter(
+                        BIKE_FAC == input$inputSelectBikeInfra
+                    )
+            }
+            
+            leafletProxy("mapMain") |>
+                clearGroup("highlightStreetLines") |>
+                addPolylines(
+                    group = "highlightStreetLines",
+                    data = data_infra_highlight,
+                    weight = 2,
+                    opacity = 0.6,
+                    color = "darkred"
+                )
         }
         filter_inputs$uid = NULL
     })
@@ -212,13 +263,36 @@ function(input, output, session) {
     observeEvent(input$inputSelectWard, {
         if (input$inputSelectWard == "all") {
             filter_inputs$ward <- NULL
+            
+            leafletProxy("mapMain") |>
+                clearGroup("highlightWards")
         } else {
             filter_inputs$ward <- input$inputSelectWard
+            
+            data_wards_highlight <-
+                data_wards |>
+                filter(
+                    WARD == input$inputSelectWard
+                )
+            
+            leafletProxy("mapMain") |>
+                clearGroup("highlightWards") |>
+                addPolygons(
+                    group = "highlightWards",
+                    data = data_wards_highlight,
+                    stroke = TRUE,
+                    weight = 2,
+                    color = "#999",
+                    opacity = 0.6,
+                    dashArray = "4",
+                    fillColor = ~color_wards(WARD),
+                    fillOpacity = 0.35,
+                )
         }
         filter_inputs$uid = NULL
     })
     
-    #
+    # Handle "other" filter input
     observeEvent(input$inputSelectOther, {
         if (input$inputSelectOther == "none") {
             filter_inputs$other <- NULL

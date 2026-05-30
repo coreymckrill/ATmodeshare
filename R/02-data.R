@@ -3,6 +3,24 @@ get_data_wards <- memoise::memoise(function() {
     read_sf("https://services6.arcgis.com/NNPaUnXVoJt8FVVE/arcgis/rest/services/Wards/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson")
 })
 
+# Load streets bike facility data (part of bike infrastructure)
+get_data_street_infra <- memoise::memoise(function() {
+    read_sf("data/streets.geojson") |>
+        st_as_sf(
+            crs = 2913
+        ) |>
+        st_transform(4326)
+})
+
+# Load multi use paths data (part of bike infrastructure)
+get_data_mu_paths <- memoise::memoise(function() {
+    read_sf("data/mu_paths.geojson") |>
+        st_as_sf(
+            crs = 2913
+        ) |>
+        st_transform(4326)
+})
+
 # Load modeshare data
 get_data_modeshare <- memoise::memoise(function() {
     read_csv("data/modeshare_plus.csv") |>
@@ -19,7 +37,7 @@ get_data_modeshare <- memoise::memoise(function() {
         ) |>
         st_as_sf(
             coords = c("longitude", "latitude"),
-            crs = 4326 # Original data is in the WGS84 geographic coordinate system
+            crs = 4326
         )
 })
 
@@ -161,7 +179,7 @@ get_choices_bikeinfra <- function() {
 get_choices_other <- function() {
     setNames(
         c("none", "osu", "walkscore"),
-        c("None", "Locations near OSU", "Top 20 Walk Score")
+        c("---", "Locations near OSU", "Top 20 Walk Score")
     )
 }
 
