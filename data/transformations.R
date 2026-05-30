@@ -6,6 +6,9 @@ data <- read_csv("data/modeshare.csv")
 data[data$site_id == "602.1", "ward"] <- 6
 data[data$site_id == "702", "ward"] <- NA
 
+# Add 14th & Monroe to "Locations near OSU"
+data[data$site_id == "212", "osu_city"] <- "osu"
+
 # Offset 601.1 from 601 so they are both clickable
 data[data$site_id == "602.1", "latitude"] <- 44.589177
 data[data$site_id == "602.1", "longitude"] <- -123.247064
