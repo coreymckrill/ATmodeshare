@@ -34,7 +34,8 @@ combined_counts <-
         tot_roll = sum(tot_roll, na.rm = TRUE),
         totAT = sum(totAT, na.rm = TRUE),
         tot_trips = sum(tot_trips, na.rm = TRUE),
-    )
+    ) |>
+    ungroup()
 data <-
     data |>
     select(!ampm) |>
