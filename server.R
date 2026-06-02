@@ -329,7 +329,7 @@ function(input, output, session) {
             
             valueBox(
                 format(data$trip_count, big.mark = ","),
-                "Trips per hour",
+                "Trips counted per hour",
                 icon = icon("route")
             )
         })
@@ -467,8 +467,8 @@ function(input, output, session) {
                 data <-
                     data |>
                     summarize(
-                        "Active trips per hour" = totAT_hr,
-                        "Motor vehivle trips per hour" = totMV_hr,
+                        "Active trips counted per hour" = totAT_hr,
+                        "Motor vehicle trips counted per hour" = totMV_hr,
                         "Walk Score" = walkscore,
                         "Bike Score" = bikescore
                     )
@@ -480,8 +480,8 @@ function(input, output, session) {
                 data <-
                     data |>
                     summarize(
-                        "Total active trips per hour" = sum(totAT_hr),
-                        "Total motor vehicle trips per hour" = sum(totMV_hr),
+                        "Total active trips counted per hour" = sum(totAT_hr),
+                        "Total motor vehicle trips counted per hour" = sum(totMV_hr),
                         "Average Walk Score" = round(mean(walkscore)),
                         "Average Bike Score" = round(mean(bikescore))
                     )

@@ -259,17 +259,17 @@ get_choices_axis <- function() {
 rename_vars <- function(modeshare_data) {
     labels <- c(
         "Location" = "site_desc",
-        "Total active trips per hour" = "totAT_hr",
+        "Total active trips counted per hour" = "totAT_hr",
         "Active trips mode share %" = "totAT_pct",
-        "Bike trips per hour" = "totbike_hr",
+        "Bike trips counted per hour" = "totbike_hr",
         "Bike mode share %" = "totbike_pct",
-        "Pedestrian trips per hour" = "ped_hr",
+        "Pedestrian trips counted per hour" = "ped_hr",
         "Pedestrian mode share %" = "ped_pct",
-        "Other active trips per hour" = "tot_roll_hr",
+        "Other active trips counted per hour" = "tot_roll_hr",
         "Other active trips mode share %" = "tot_roll_pct",
-        "Motor vehicle trips per hour" = "totMV_hr",
+        "Motor vehicle trips counted per hour" = "totMV_hr",
         "Motor vehicle mode share %" = "totMV_pct",
-        "Total trips per hour" = "tot_trips_hr",
+        "Total trips counted per hour" = "tot_trips_hr",
         "Walk Score" = "walkscore",
         "Bike Score" = "bikescore"
     )

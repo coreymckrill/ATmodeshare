@@ -173,7 +173,7 @@ body <- dashboardBody(
                             "inputSelectX",
                             "X axis",
                             get_choices_axis(),
-                            selected = "Total trips per hour"
+                            selected = "Motor vehicle trips counted per hour"
                         ),
                         varSelectInput(
                             "inputSelectY",
