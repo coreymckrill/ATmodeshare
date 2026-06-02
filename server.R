@@ -188,6 +188,8 @@ function(input, output, session) {
     
     # Handle reset link
     observeEvent(input$actionFilterReset, {
+        filter_inputs$uid <- NULL
+        
         updateSelectInput(
             "inputSelectBikeInfra",
             selected = "all",
