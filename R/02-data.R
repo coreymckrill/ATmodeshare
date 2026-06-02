@@ -150,6 +150,10 @@ filter_by_other <- function(data, other) {
         data |>
             arrange(desc(ped_pct)) |>
             slice(1:20)
+    } else if (other == "toptrips_hr") {
+        data |>
+            arrange(desc(tot_trips_hr)) |>
+            slice(1:20)
     } else if (other == "walkscore") {
         data |>
             arrange(desc(walkscore)) |>
@@ -201,15 +205,17 @@ get_choices_other <- function() {
             "topbike_pct",
             "topped_hr",
             "topped_pct",
+            "toptrips_hr",
             "walkscore"
         ),
         c(
             "---",
             "Locations near OSU",
-            "Top 20 bike trips per hour",
+            "Top 20 bike trips counted per hour",
             "Top 20 bike mode %",
-            "Top 20 ped trips per hour",
+            "Top 20 ped trips counted per hour",
             "Top 20 ped mode %",
+            "Top 20 total trips counted per hour",
             "Top 20 Walk Score"
         )
     )
