@@ -185,7 +185,7 @@ function(input, output, session) {
         data_modeshare_subset(subset)
     })
     
-    # Handle reset link
+    # Handle data subsets reset link
     observeEvent(input$actionFilterReset, {
         filter_inputs$uid <- NULL
         
@@ -604,4 +604,18 @@ function(input, output, session) {
                 ) |>
                 config(displayModeBar = F)
         })
+    
+    # Handle chart axis reset link
+    observeEvent(input$actionChartReset, {
+        updateSelectInput(
+            "inputSelectX",
+            selected = "Motor vehicle trips counted per hour",
+            session = session
+        )
+        updateSelectInput(
+            "inputSelectY",
+            selected = "Active trips mode share %",
+            session = session
+        )
+    })
 }

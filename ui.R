@@ -179,16 +179,24 @@ body <- dashboardBody(
                     box(
                         solidHeader = TRUE,
                         width = NULL,
-                        #uiOutput("chartInputs")
+                        h2(
+                            style = "margin-top: 0; font-size: 2rem;",
+                            "Chart dimensions",
+                            actionLink(
+                                style = "display: inline-block; margin-left: 1rem; font-size: 1.3rem;",
+                                "actionChartReset",
+                                "Reset"
+                            )
+                        ),
                         varSelectInput(
                             "inputSelectX",
-                            "X axis",
+                            "Horizontal axis",
                             get_choices_axis(),
                             selected = "Motor vehicle trips counted per hour"
                         ),
                         varSelectInput(
                             "inputSelectY",
-                            "Y axis",
+                            "Vertical axis",
                             get_choices_axis(),
                             selected = "Active trips mode share %"
                         ),
