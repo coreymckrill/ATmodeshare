@@ -1,14 +1,6 @@
 header <- dashboardHeader(disable = TRUE)
 
 sidebar <- dashboardSidebar(
-    # Putting this here since dashboardPage() doesn't take it
-    tags$head(
-        tags$style(HTML("
-            body {
-                font-size: 1.6rem;
-            }
-        "))
-    ),
     div(
         style = "margin-top: -50px; margin-bottom: 1.6rem; padding: 15px 15px 0;",
         h1(
@@ -52,6 +44,25 @@ sidebar <- dashboardSidebar(
 )
 
 body <- dashboardBody(
+    useShinyjs(),
+    extendShinyjs(
+        script = "script.js",
+        # Using the special init function so we don't need to list it here
+        functions = c()
+    ),
+    # Putting this here since dashboardPage() doesn't take it
+    tags$head(
+        tags$style(HTML("
+            body {
+                font-size: 1.6rem;
+            }
+        ")),
+        tags$link(
+            rel = "stylesheet",
+            type = "text/css",
+            href = "style.css"
+        )
+    ),
     tabItems(
         # Map tab
         tabItem(tabName = "map",
@@ -194,7 +205,7 @@ body <- dashboardBody(
         tabItem(tabName = "faq",
             fluidRow(
                 column(
-                    width = 9,
+                    width = 8,
                     !!!get_content_faq()
                 )
             )

@@ -97,7 +97,6 @@ function(input, output, session) {
                                 "Let's go"
                             )
                         )
-                        
                     )
                 )
             }
