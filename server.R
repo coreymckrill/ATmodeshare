@@ -247,6 +247,16 @@ function(input, output, session) {
         }
     })
     
+    # Reset map click selection when switching to the chart
+    observeEvent(
+        input$sidebarNav,
+        {
+            if (input$sidebarNav == "chart") {
+                filter_inputs$uid <- NULL
+            }
+        }
+    )
+    
     # Handle bike infrastructure filter input
     observeEvent(input$inputSelectBikeInfra, {
         if (input$inputSelectBikeInfra == "all") {
